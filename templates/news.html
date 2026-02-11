@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+ <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>News & Stories</h1>
+            <p>Stay updated with the latest entertainment, music, community updates, and cultural insights from across Rwanda</p>
+        </div>
+    </div>
+
+<!-- Category Filter -->
+    <div class="category-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                {% comment %} <button class="filter-btn active" data-category="all">All News</button> {% endcomment %}
+                
+                {% for category in categories %}
+                <button class="filter-btn" data-category="{{ category.name|lower }}">{{ category.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="container">
+
+
+            <!-- News Grid -->
+            <div class="news-grid" id="newsGrid">
+                <!-- News Card 1 -->
+
+
+
+                {% for article in articles %}
+                <div class="news-card" data-category="{{ article.category.name|lower }}">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                    <div class="news-card-body">
+                        <span class="news-badge {{ article.category.name|lower }}">{{ article.category.name }}</span>
+                        <h5>{{ article.title }}</h5>
+                        <div class="meta">
+                            <i class="fas fa-calendar"></i> {{ article.date|date:"F d, Y" }}
+                        </div>
+                        <p>{{ article.excerpt }}</p>
+                        <a href="{% url 'article_detail' article.pk %}" class="btn-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            <!-- Pagination -->
+            {% comment %} <div class="pagination-wrapper">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </div> {% endcomment %}
+        </div>
+    </section>
+
+
+
+
+{% endblock content %}

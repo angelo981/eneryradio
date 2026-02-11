@@ -1,0 +1,412 @@
+/* Page Header */
+.page-header {
+    margin-top: 70px;
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(84, 173, 222, 0.4)), url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=1920&h=600&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(84, 173, 222, 0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.page-header h1 {
+    font-size: 4.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #54adde, white, #54adde);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header p {
+    font-size: 1.4rem;
+    color: #d1d5db;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.2s both;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Styling */
+.section-padding {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #54adde, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title p {
+    color: #9ca3af;
+    font-size: 1.2rem;
+}
+
+/* Who We Are Section */
+.who-we-are {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 30px;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.who-we-are::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(84, 173, 222, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.who-we-are p {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #e5e7eb;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.who-we-are .icon-large {
+    font-size: 5rem;
+    color: #54adde;
+    margin-bottom: 30px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Mission & Vision Cards */
+.mv-card {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 25px;
+    padding: 50px 40px;
+    height: 100%;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.mv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(84, 173, 222, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.mv-card:hover::before {
+    left: 100%;
+}
+
+.mv-card:hover {
+    border-color: #54adde;
+    transform: translateY(-15px);
+    box-shadow: 0 20px 60px rgba(84, 173, 222, 0.4);
+}
+
+.mv-card .icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #54adde, white);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    transition: transform 0.4s;
+}
+
+.mv-card:hover .icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.mv-card h3 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #54adde;
+}
+
+.mv-card p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #d1d5db;
+}
+
+/* Values Section */
+.value-item {
+    background: rgba(139, 92, 246, 0.1);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.value-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #54adde, white);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.value-item:hover::after {
+    transform: scaleX(1);
+}
+
+.value-item:hover {
+    border-color: #54adde;
+    transform: translateY(-10px);
+    background: rgba(139, 92, 246, 0.2);
+}
+
+.value-item i {
+    font-size: 3.5rem;
+    color: #54adde;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.value-item:hover i {
+    transform: scale(1.2);
+}
+
+.value-item h4 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Coverage Section */
+.coverage-box {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 30px;
+    padding: 70px 50px;
+    text-align: center;
+}
+
+.coverage-box h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #54adde, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.coverage-box p {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #d1d5db;
+    margin-bottom: 40px;
+}
+
+.frequency-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.frequency-badge {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    padding: 25px 40px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.frequency-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(84, 173, 222, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.frequency-badge:hover::before {
+    opacity: 1;
+}
+
+.frequency-badge:hover {
+    border-color: #54adde;
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(84, 173, 222, 0.5);
+}
+
+.frequency-badge .location {
+    color: #54adde;
+    font-weight: 600;
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.frequency-badge .freq {
+    font-size: 2.2rem;
+    font-weight: bold;
+    display: block;
+    color: white;
+}
+
+/* Leadership Section */
+.leadership-box {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 30px;
+    padding: 60px 50px;
+    text-align: center;
+}
+
+.leadership-box h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #54adde;
+}
+
+.leadership-box p {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #d1d5db;
+    margin-bottom: 40px;
+}
+
+.leadership-logo {
+    margin-top: 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.leadership-logo i {
+    font-size: 5rem;
+    color: #54adde;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.leadership-logo h4 {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #54adde, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Stats Section */
+.stats-section {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.stat-box {
+    text-align: center;
+    padding: 30px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+}
+
+.stat-box:hover {
+    border-color: #54adde;
+    transform: translateY(-10px);
+    background: rgba(139, 92, 246, 0.2);
+}
+
+.stat-box h3 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #54adde, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+.stat-box p {
+    font-size: 1.1rem;
+    color: #9ca3af;
+    margin: 0;
+}

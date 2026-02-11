@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/podcast.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+
+  <!-- Hero Section -->
+    <section class="hero-podcasts">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fas fa-podcast"></i> PODCASTS & AUDIO HUB
+                        </div>
+                        <h1 class="hero-title">Your Favorite Shows,<br>On Your Schedule</h1>
+                        <p class="hero-subtitle">Catch up on the best conversations, interviews, and exclusive content from ENERGY RADIO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Podcast
+    <section class="container">
+        <div class="featured-podcast">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="featured-content">
+                        <span class="featured-badge"><i class="fas fa-star"></i> FEATURED THIS WEEK</span>
+                        <h2 class="featured-title">Energy Talk: Leadership & Innovation in Rwanda</h2>
+                        <p class="featured-description">Join us for an inspiring conversation with tech entrepreneurs and innovators shaping Rwanda's future. Discover stories of resilience, creativity, and transformation.</p>
+                        <a href="#" class="featured-btn">
+                            <i class="fas fa-play-circle"></i> Listen Now
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Featured" style="border-radius: 20px; max-width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Category Filters -->
+    <section class="category-filters">
+        <div class="container">
+            <div class="text-center">
+                {% for category in podcategories %}
+                <button class="filter-btn" data-category="{{ category.slug }}">
+                    <span><i class="{{ category.icon }}"></i> {{ category.name }}</span>
+                </button>
+                {% endfor %}
+                {% comment %} <button class="filter-btn active" data-category="all">
+                    <span><i class="fas fa-th"></i> All Shows</span>
+                </button> {% endcomment %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcasts Grid -->
+    <section class="podcasts-grid">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Browse All Episodes</h2>
+                <p class="section-subtitle">Explore our complete collection of podcasts and audio content</p>
+            </div>
+
+            <div class="row" id="podcastsContainer">
+
+
+                {% for podcast in podcasts %}
+                <!-- Podcast Card -->
+                <div class="col-lg-4 col-md-6 podcast-item" data-category="{{ podcast.category.slug }}">
+                    <div class="podcast-card">
+                        <div class="podcast-image">
+                           <img src="{{ podcast.image_url }}" alt="{{ podcast.title }}" class="podcast-image">
+                             <video class="img-fluid ad-video" src="{{ podcast.video_url }}" 
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                             </video>
+                            <a href="{{ podcast.video_url }}" class="play-btn">▶</a>
+                            <video >
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="podcast-badge new">NEW</span>
+                        </div>
+                        <div class="podcast-content">
+                            <div class="podcast-category">
+                                <i class="{{ podcast.category.icon }}"></i> {{ podcast.category.name }}
+                            </div>
+                            <h3 class="podcast-title">{{ podcast.title }}</h3>
+                            <p class="podcast-description">{{ podcast.description }}</p>
+                            {% comment %} <div class="podcast-meta">
+                                <div class="podcast-episodes">
+                                    <i class="fas fa-list"></i> {{ podcast.episode_count }} Episodes
+                                </div>
+                                <div class="podcast-duration">
+                                    <i class="fas fa-clock"></i> {{ podcast.duration }} min
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="container">
+        <div class="newsletter-section">
+            <div class="newsletter-content">
+                <h3 class="newsletter-title">Never Miss an Episode</h3>
+                <p class="newsletter-subtitle">Get notified when new podcasts drop. Join 45,000+ subscribers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit"><i class="fas fa-envelope"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock content %}

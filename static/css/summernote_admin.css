@@ -1,0 +1,42 @@
+.note-editor,
+.note-editor .note-editable,
+.note-editor .note-toolbar,
+.note-editor .note-statusbar {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.note-editor .note-editable {
+  min-height: 400px;
+}
+
+/* Ensure the iframe used by summernote (when iframe: True) fills its container */
+.note-frame,
+.note-editable {
+  width: 100% !important;
+}
+
+/* Stronger admin-scoped rules to override admin column constraints */
+.admin .module .form-row,
+.admin .module .form-row .field-box,
+.changeform .form-row,
+.changeform .form-row .field-box,
+.field-content {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+.admin .module .form-row .field-box .note-editor,
+.changeform .note-editor {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+}
+
+/* For iframe mode - ensure iframe element fills available space */
+.note-editor .note-editable iframe,
+.note-frame iframe {
+  width: 100% !important;
+  max-width: none !important;
+}

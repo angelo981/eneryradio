@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+<!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Discover the story behind Rwanda's most vibrant radio station</p>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who We Are</h2>
+            </div>
+            <div class="who-we-are">
+                <div class="text-center">
+                    <i class="fas fa-broadcast-tower icon-large"></i>
+                </div>
+                <p>ENERGY RADIO is a leading Rwandan radio station broadcasting from Musanze and reaching nationwide listeners through FM, digital platforms, and global streaming. We amplify voices, inspire creativity, and connect communities through entertainment, education, and impactful communication.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="section-padding stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="mv-card">
+                        <div class="icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To educate, inform, entertain, empower, and positively transform communities through radio, technology, creativity, and strategic communication.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="mv-card">
+                        <div class="icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To become Rwanda's most innovative and socially impactful broadcasting platform, shaping the future of media and community development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Integrity</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Innovation</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-users"></i>
+                        <h4>Community</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-palette"></i>
+                        <h4>Creativity</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-star"></i>
+                        <h4>Excellence</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="value-item">
+                        <i class="fas fa-heart"></i>
+                        <h4>Passion</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section-padding stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Making a difference across Rwanda</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-box">
+                        <h3>3M+</h3>
+                        <p>People Reached Annually</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-box">
+                        <h3>15+</h3>
+                        <p>National Campaigns Delivered</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-box">
+                        <h3>200+</h3>
+                        <p>Youth Trained & Supported</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Coverage</h2>
+                <p>Reaching listeners across Rwanda and beyond</p>
+            </div>
+
+            <div class="coverage-box">
+                <h3>Nationwide Reach</h3>
+                <p>ENERGY RADIO reaches listeners across almost all districts of Rwanda and worldwide through online streaming.</p>
+                
+                <div class="frequency-list">
+                    <div class="frequency-badge">
+                        <span class="location"></span>
+                        <span class="freq">88.8 FM</span>
+                    </div>
+                    <div class="frequency-badge">
+                        <span class="location"></span>
+                        <span class="freq">90.3 FM</span>
+                    </div>
+                    <div class="frequency-badge">
+                        <span class="location"></span>
+                        <span class="freq">107.3 FM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="section-padding stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Leadership</h2>
+                <p>Strong governance and professional excellence</p>
+            </div>
+
+            <div class="leadership-box">
+                <h3>Part of TOP5SAI Broadcasting Group</h3>
+                <p>ENERGY RADIO benefits from strong governance, professional teams, and integrated multimedia capabilities as part of the TOP5SAI Broadcasting Group.</p>
+                
+                <div class="leadership-logo">
+                    <i class="fas fa-building"></i>
+                    <h4>TOP5SAI BROADCASTING GROUP</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+ <!-- Hero Section -->
+    <section class="hero-blog">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-newspaper"></i> BLOG & STORIES
+                </div>
+                <h1 class="hero-title">Latest Insights & Stories<br>From ENERGY RADIO</h1>
+                <p class="hero-subtitle">Discover inspiring articles, news, and community stories from Rwanda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section
+    <section class="filter-section">
+        <div class="container">
+            <div class="text-center">
+                <button class="filter-btn active" data-category="all">
+                    <span><i class="fas fa-th"></i> All Articles</span>
+                </button>
+                <button class="filter-btn" data-category="community">
+                    <span><i class="fas fa-users"></i> Community</span>
+                </button>
+                <button class="filter-btn" data-category="music">
+                    <span><i class="fas fa-music"></i> Music</span>
+                </button>
+                <button class="filter-btn" data-category="event">
+                    <span><i class="fas fa-calendar"></i> Events</span>
+                </button>
+                <button class="filter-btn" data-category="spotlight">
+                    <span><i class="fas fa-star"></i> Spotlight</span>
+                </button>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Blog Grid -->
+    <section class="blogs-grid">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">All Blog Articles</h2>
+                <p class="section-subtitle">Read our latest stories and insights</p>
+            </div>
+
+            <div class="row" id="blogsContainer">
+                <!-- Blog Card 1 -->
+                <div class="col-lg-4 col-md-6 blog-item" data-category="community">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="{% static 'images/energy.jpeg' %}" alt="blog" class="blog-image">
+                            <!-- <div class="read-overlay">s
+                                <i class="fas fa-arrow-right"></i>
+                            </div> -->
+                            <!-- <span class="blog-badge">FEATURED</span> -->
+                        </div>
+                        <div class="blog-content">
+                            <!-- <div class="blog-category">
+                                <i class="fas fa-users"></i> Community
+                            </div> -->
+                            <h3 class="blog-title">Rwanda’s Creative Economy: Africa’s Next Powerhouse</h3>
+                            <p class="blog-excerpt">Rwanda’s creative economy is emerging as one of the most dynamic in Africa, driven by strong national vision...</p>
+                            <div class="blog-meta">
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i> december 02, 2025
+                                </div>
+                                <!-- <div class="blog-author">
+                                    <i class="fas fa-user"></i> 5 min read
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="col-lg-4 col-md-6 blog-item" data-category="music">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                             <img src="{% static 'images/journalist.jpg' %}" alt="blog" class="blog-image">    
+                            <div class="read-overlay">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <!-- <div class="blog-category">
+                                <i class="fas fa-music"></i> Music
+                            </div> -->
+                            <h3 class="blog-title">The Rise of Youth Talent in Rwanda </h3>
+                            <p class="blog-excerpt">Discover how Energy Radio and TOP5SAI are shaping Rwanda’s next generation of creatives through talent development...</p>
+                            <div class="blog-meta">
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>  december 02, 2025
+                                </div>
+                                <!-- <div class="blog-author">
+                                    <i class="fas fa-user"></i> 4 min read
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 3 -->
+                <div class="col-lg-4 col-md-6 blog-item" data-category="event">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                        <img src="{% static 'images/hero.jpg' %}" alt="blog" class="blog-image">      
+                            <div class="read-overlay">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <!-- <div class="blog-category">
+                                <i class="fas fa-calendar"></i> Events
+                            </div> -->
+                             <h3 class="blog-title">Rwanda MICE & Event Economy</h3>
+                            <p class="blog-excerpt">Rwanda’s MICE sector has become a catalyst for national economic transformation, fueling job creation...</p>
+                            <div class="blog-meta">
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i> december 02, 2025
+                                </div>
+                                <!-- <div class="blog-author">
+                                    <i class="fas fa-user"></i> 6 min read
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 4 -->
+                <div class="col-lg-4 col-md-6 blog-item" data-category="music">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                             <img src="{% static 'images/journalist.jpg' %}" alt="blog" class="blog-image">    
+                            <div class="read-overlay">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <!-- <div class="blog-category">
+                                <i class="fas fa-music"></i> Music
+                            </div> -->
+                            <h3 class="blog-title">The Rise of Youth Talent in Rwanda </h3>
+                            <p class="blog-excerpt">Discover how Energy Radio and TOP5SAI are shaping Rwanda’s next generation of creatives through talent development...</p>
+                            <div class="blog-meta">
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>  december 02, 2025
+                                </div>
+                                <!-- <div class="blog-author">
+                                    <i class="fas fa-user"></i> 4 min read
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 5 -->
+                                    <div class="col-lg-4 col-md-6 blog-item" data-category="community">
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="{% static 'images/community.jpg' %}" alt="blog" class="blog-image">   
+                                <div class="read-overlay">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <!-- <div class="blog-category">
+                                    <i class="fas fa-users"></i> Community
+                                </div> -->
+                                <h3 class="blog-title">Digital Transformation in Rwanda’s Media Industry</h3>
+                                <p class="blog-excerpt">Explore how Rwandan radio, TV, and digital platforms are transforming broadcasting through hybrid media and innovative technologies...</p>
+                                <div class="blog-meta">
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i> december 02, 2025
+                                    </div>
+                                    <!-- <div class="blog-author">
+                                        <i class="fas fa-user"></i> 7 min read
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 6
+                    <div class="col-lg-4 col-md-6 blog-item" data-category="music">
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="{% static 'images/iwacu.jpg' %}" alt="blog" class="blog-image">
+                                <div class="read-overlay">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">
+                                    <i class="fas fa-music"></i> Music
+                                </div> -->
+                                <!-- <h3 class="blog-title">Inside the Studio: Artists on the Rise</h3>
+                                <p class="blog-excerpt">Behind-the-scenes with producers and rising artists shaping Rwanda's contemporary sound...</p>
+                                <div class="blog-meta">
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i> december 02, 2025
+                                    </div>
+                                     <div class="blog-author">
+                                        <i class="fas fa-user"></i> 5 min read
+                                    </div> -->
+                                <!-- </div>
+                            </div>
+                        </div> -->
+                    <!-- </div> --> 
+
+                    <!-- End Blog Grid Items -->
+                <!-- </div> -->
+
+                <!-- Newsletter / CTA -->
+                <div class="newsletter-section">
+                    <h3 class="newsletter-title">Stay Updated</h3>
+                    <p class="newsletter-subtitle">Subscribe to our newsletter for the latest stories, events, and exclusive content.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+
+
+{% endblock content %}

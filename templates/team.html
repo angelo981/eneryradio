@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1><i class="fas fa-users"></i> Meet Our Team</h1>
+        <p>The voices and faces behind Energy Radio Rwanda</p>
+    </div>
+</section>
+
+<!-- Radio Presenters Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Radio Presenters</h2>
+            <p>The talented voices bringing you entertainment daily</p>
+        </div>
+
+        <div class="row">
+            {% for presenter in team %}        
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="presenter-card">
+                        <!-- Image -->
+                        <img src="{{ presenter.image.url }}" alt="{{ presenter.name }}" class="presenter-image">
+                        
+                        <!-- Microphone Icon -->
+                        <div class="icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        
+                        <!-- Name -->
+                        <h5>{{ presenter.name }}</h5>
+                        
+                        <!-- ✅ SOCIAL MEDIA LINKS -->
+                        <div class="presenter-social">
+                            {% if presenter.whatsapp_url %}
+                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            {% endif %}
+                            
+                            {% if presenter.instagram_url %}
+                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}

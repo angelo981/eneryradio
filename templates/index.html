@@ -1,0 +1,413 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <div class="hero-content">
+                        <h2>ENERGY RADIO</h2>
+                        <p class="tagline"><span id="typingText1" class="typing-text"></span></p>
+                        
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-hero btn-live">
+                                <i class="fas fa-circle"></i> Listen Live
+                            </a>
+                            <a href="#programs" class="btn-hero btn-programs">
+                                <i class="fas fa-radio"></i> View Programs
+                            </a>
+                            <a href="#advertise" class="btn-hero btn-advertise">
+                                <i class="fas fa-bullhorn"></i> Advertise With Us
+                            </a>
+                        </div>
+
+                        <div class="now-playing-box">
+                            <h6>NOW PLAYING</h6>
+                            <p id="nowPlaying">pom pom - Bruce Melodie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <div class="hero-content">
+                        <h2>ENERGY RADIO</h2>
+                        <p class="tagline"><span id="typingText2" class="typing-text"></span></p>
+                        
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-hero btn-live">
+                                <i class="fas fa-circle"></i> Listen Live
+                            </a>
+                            <a href="#programs" class="btn-hero btn-programs">
+                                <i class="fas fa-radio"></i> View Programs
+                            </a>
+                            <a href="#advertise" class="btn-hero btn-advertise">
+                                <i class="fas fa-bullhorn"></i> Advertise With Us
+                            </a>
+                        </div>
+
+                        <div class="now-playing-box">
+                            <h6>NOW PLAYING</h6>
+                            <p id="nowPlaying2">pom pom - Bruce Melodie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <div class="hero-content">
+                        <h2>ENERGY RADIO</h2>
+                        <p class="tagline"><span id="typingText3" class="typing-text"></span></p>
+                        
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-hero btn-live">
+                                <i class="fas fa-circle"></i> Listen Live
+                            </a>
+                            <a href="#programs" class="btn-hero btn-programs">
+                                <i class="fas fa-radio"></i> View Programs
+                            </a>
+                            <a href="#advertise" class="btn-hero btn-advertise">
+                                <i class="fas fa-bullhorn"></i> Advertise With Us
+                            </a>
+                        </div>
+
+                        <div class="now-playing-box">
+                            <h6>NOW PLAYING</h6>
+                            <p id="nowPlaying3">pom pom - Bruce Melodie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dismissible side card: appears while hero-section is in view -->
+        <div id="side-card" class="hidden" role="dialog" aria-label="Special information">
+            <div class="card-title">special news</div>
+            <div class="card-body">Get the latest exclusive updates and shows tailored for you.</div>
+            <div class="card-actions">
+                <a href="about.php" class="btn-learn">Learn more</a>
+                <button id="sideCardDismiss" class="btn-dismiss">Dismiss</button>
+            </div>
+        </div>
+    </section>
+
+ <!-- Our Partners Section -->
+<section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+    <div class="container">
+        <div class="section-title">
+            <h2>Ad.</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="ad-card">
+                    <div class="ad-placeholder">
+                        <video class="img-fluid ad-video" src="media/video/top1.mp4" muted autoplay loop playsinline
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </video>
+                        <div class="ad-overlay">
+                            <i class="fas fa-ad"></i>
+                            <p>Premium Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="ad-card">
+                    <div class="ad-placeholder">
+                        <video class="img-fluid ad-video" src="media/video/top2.mp4" muted autoplay loop playsinline
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </video>
+                        <div class="ad-overlay">
+                            <i class="fas fa-ad"></i>
+                            <p>Premium Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="ad-card">
+                    <div class="ad-placeholder">
+                        <video class="img-fluid ad-video" src="media/video/top1.mp4" muted autoplay loop playsinline
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </video>
+                        <div class="ad-overlay">
+                            <i class="fas fa-ad"></i>
+                            <p>Premium Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="ad-card">
+                    <div class="ad-placeholder">
+                        <video class="img-fluid ad-video" src="media/video/top2.mp4" muted autoplay loop playsinline
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        </video>
+                        <div class="ad-overlay">
+                            <i class="fas fa-ad"></i>
+                            <p>Premium Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- On Air Today Section -->
+    <section id="programs" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>On Air Today</h2>
+                <p>Discover what's happening on ENERGY RADIO right now</p>
+            </div>
+            
+            <div class="programs-slider-container">
+                <button class="slider-nav-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="programs-slider-wrapper">
+                    <div class="programs-slider" id="programsSlider">
+
+                        {% comment %} <div class="program-slide active">
+                            <div class="program-card-slide">
+                                <div class="live-badge">LIVE NOW</div>
+                                <h4>Morning Energy</h4>
+                                <p class="time">6AM – 10AM</p>
+                                <p>Wake up with the freshest vibes and real conversations.</p>
+                            </div>
+                        </div> {% endcomment %}
+
+                          {% for program in programs %}
+                        <div class="program-slide">
+                            <div class="program-card-slide">
+                                        {% if program.image %}
+                      <img src="{{ program.image.url }}" alt="{{ program.title }}" class="program-image">
+                                {% endif %}
+                                <h4>{{ program.title }}</h4>
+                                <p class="time">{{ program.start_time }} – {{ program.end_time }}</p>
+                                <p>{{ program.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                       
+                    </div>
+                </div>
+                
+                <button class="slider-nav-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Button -->
+    <div class="floating-btn" id="interactionBtn">
+        <a href="https://wa.me/0780979146"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+    </div>
+
+    <!-- Combined Modal -->
+    <div class="custom-moda d-none" id="combinedModa">
+        <div class="modal-content-combined">
+            <div class="modal-header-combined">
+                <h5>Connect With Us</h5>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="songRequest">
+                    <i class="fas fa-music"></i> Song Request
+                </button>
+                <button class="modal-tab" data-tab="message">
+                    <i class="fas fa-envelope"></i> Message
+                </button>
+            </div>
+
+            <div class="tab-content-panel active" id="songRequestPanel">
+                <form class="custom-form" id="songRequestForm">
+                    <div class="form-group">
+                        <label for="requesterName">Your Name</label>
+                        <input type="text" id="requesterName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="songName">Song Request</label>
+                        <input type="text" id="songName" placeholder="Song title & artist" required>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Submit Request
+                    </button>
+                </form>
+            </div>
+
+            <div class="tab-content-panel" id="messagePanel">
+                <form class="custom-form" id="messageForm">
+                    <div class="form-group">
+                         <label for="requesterName">Your Name</label>
+                         <input type="text" id="requesterName" placeholder="Enter your name" required>
+                        <label for="messageText">Your Message</label>
+                        <textarea id="messageText" placeholder="Type your message or suggestion..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest News & Stories -->
+    <section id="news" class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest News & Stories</h2>
+                <p>Stay informed with entertainment, culture, community updates, and more</p>
+            </div>
+
+            <div class="row">
+                {% for article in articles %}
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                        <div class="news-card-body">
+                            <span class="news-badge">{{ article.category.name }}</span>
+                            <h5>{{ article.title }}</h5>
+                            <p>{{ article.excerpt|truncatewords:30 }}</p>
+                            <a href="{% url 'article_detail' article.pk %}" class="btn-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+
+            <div class="text-center mt-4">
+                <div class="text-center mt-4">
+                <a href="{% url 'news' %}" class="btn-read-more"><i class="fas fa-newspaper"></i> Read More News</a>
+             </div>
+                
+            </div>
+        </div>
+    </section>
+     <!-- Social posts from platforms (auto-loaded)
+    <section class="section-padding">
+            <div class="section-title" style="margin-top:20px;">
+                <h3 style="font-size:1.25rem; margin-bottom:6px;">Latest from our platforms</h3>
+                <p style="color:#9ca3af; margin:0 0 6px 0;">Recent posts from Facebook, Instagram &amp; X</p>
+            </div>
+            <div id="social-feed">
+                <div class="social-placeholder">Loading posts...</div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Podcasts & Audio Hub -->
+    <section id="podcasts" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Podcasts & Audio Hub</h2>
+                <p>Your favorite shows, on your schedule</p>
+            </div>
+
+            <div class="row">
+                {% for podcast in podcasts %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="podcast-card">
+                        {% if podcast.cover_image %}
+                            <img src="{{ podcast.image }}" alt="{{ podcast.title }}" class="podcast-image">
+                        {% else %}
+                            <i class="{{ podcast.category.icon }}"></i>
+                        {% endif %}
+                        <h5>{{ podcast.title }}</h5>
+                        <p>{{ podcast.description|truncatewords:20 }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+
+            <div class="text-center mt-4">
+              <a href="{% url 'podcast' %}" class="btn-read-more"><i class="fas fa-headphones"></i> Browse All Podcasts</a>
+            </div>
+       
+    </section>
+
+    <!-- Advertise Section -->
+    <section id="advertis" class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advertise With ENERGY RADIO</h2>
+                <p>Reach millions of active, connected listeners across Rwanda and beyond</p>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h4 style="color: #54adde; margin-bottom: 20px;">Why Advertise With Us:</h4>
+                    <ul style="color: #d1d5db; font-size: 1.1rem; line-height: 2;">
+                        <li><i class="fas fa-check-circle" style="color: #54adde; margin-right: 10px;"></i>Strong audience engagement</li>
+                        <li><i class="fas fa-check-circle" style="color: #54adde; margin-right: 10px;"></i>National and diaspora reach</li>
+                        <li><i class="fas fa-check-circle" style="color: #54adde; margin-right: 10px;"></i>Multi-platform visibility</li>
+                        <li><i class="fas fa-check-circle" style="color: #54adde; margin-right: 10px;"></i>Affordable packages for every brand</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="{% url 'contact' %}" class="btn-hero btn-advertise" style="font-size: 1.2rem; padding: 20px 40px;">
+                        <i class="fas fa-phone"></i> Book a Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Impact -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Community Impact</h2>
+                <p>We believe in radio that drives change</p>
+            </div>
+
+            <div class="impact-stats">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3>1M+</h3>
+                            <p>People Reached Annually</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3>15+</h3>
+                            <p>National Campaigns Delivered</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3>200+</h3>
+                            <p>Youth Trained & Supported</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p style="color: #d1d5db; font-size: 1.1rem; margin-bottom: 20px;">ENERGY RADIO leads campaigns on GBV prevention, health education, youth empowerment, and social transformation.</p>
+                   <a href="{% url 'community' %}" class="btn-read-more"><i class="fas fa-hand-holding-heart"></i> Explore Our Community Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+        <div class="container">
+            <div class="newsletter-section">
+                <h3>Stay Connected – Join 45,000+ Subscribers</h3>
+                <p>Receive updates on programs, opportunities, and events</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit"><i class="fas fa-envelope"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

@@ -1,0 +1,115 @@
+
+   {% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+   <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="main-grid">
+            <!-- Main Article -->
+            <div class="article-container">
+                <!-- Article Image -->
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1557804506-669714d2e745?w=1200&h=500&fit=crop" alt="Technology Revolution">
+                </div>
+
+                <!-- Article Meta -->
+                <div class="article-meta">
+                    <div class="meta-info">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            {{ article.date|date:"F d, Y" }}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            5:30 PM EST
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            By <span class="author-name">{{ article.writen_by }}</span>
+                        </div>
+                    </div>
+                    <div class="social-share">
+                        <a href="#" class="social-btn" title="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-btn" title="Share on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-btn" title="Share on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-btn" title="Share on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article Title -->
+                <h1 class="article-title">{{ article.title }}</h1>
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    <p>{{ article.content|linebreaks }}</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h2 class="comments-title">Reader Comments</h2>
+
+                    <!-- Comments -->
+                    {% comment %} <div class="comment">
+                        <span class="comment-author">James Anderson</span>
+                        <span class="comment-time">2 hours ago</span>
+                        <p class="comment-text">Excellent article! The insights about AI's impact on business are spot-on. I've seen firsthand how our organization has benefited from implementing AI solutions. Looking forward to more coverage on this topic.</p>
+                    </div> {% endcomment %}
+
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: var(--text-light);">Leave a Comment</h3>
+                        <form>
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                            <textarea rows="4" placeholder="Share your thoughts..." required></textarea>
+                            <button type="submit" class="submit-btn">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Related Stories -->
+                <div class="related-stories">
+                    <h2 class="related-title">Related Stories</h2>
+
+                    <a href="#" class="related-story">
+                        <div class="related-story-title">The Future of Machine Learning: Emerging Trends in 2026</div>
+                        <div class="related-story-meta">
+                            <i class="fas fa-calendar"></i> February 5, 2026 • By David Kumar
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Sidebar - Trending News -->
+            <aside class="sidebar">
+                <div class="trending-box">
+                    <div class="trending-header">
+                        <i class="fas fa-fire"></i> Trending Now
+                    </div>
+                    <div class="trending-items">
+                        <a href="#" class="trending-item">
+                            <span class="trending-number">1</span>
+                            <div class="trending-story-title">Global Tech Conference Announces Record Attendance Numbers</div>
+                            <div class="trending-story-meta">4.2K reads</div>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,127 @@
+
+   {% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+   <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="main-grid">
+            <!-- Main Article -->
+            <div class="article-container">
+                <!-- Article Image -->
+                <div class="article-image">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                </div>
+
+                <!-- Article Meta -->
+                <div class="article-meta">
+                    <div class="meta-info">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            {{ article.date|date:"F d, Y" }}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            5:30 PM EST
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            By <span class="author-name">{{ article.author.first_name }} {{ article.author.last_name }}</span>
+                        </div>
+                    </div>
+                    <div class="social-share">
+                        <a href="#" class="social-btn" title="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-btn" title="Share on Twitter">
+                            <i class="fab fa-x"></i>
+                        </a>
+                        <a href="#" class="social-btn" title="Share on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                       
+                    </div>
+                </div>
+
+                <!-- Article Title -->
+                <h1 class="article-title">{{ article.title }}</h1>
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    <p>{{ article.content|safe }}</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h2 class="comments-title">Reader Comments</h2>
+
+                    <!-- Comments -->
+                    {% comment %} <div class="comment">
+                        <span class="comment-author">James Anderson</span>
+                        <span class="comment-time">2 hours ago</span>
+                        <p class="comment-text">Excellent article! The insights about AI's impact on business are spot-on. I've seen firsthand how our organization has benefited from implementing AI solutions. Looking forward to more coverage on this topic.</p>
+                    </div> {% endcomment %}
+
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: var(--text-light);">Leave a Comment</h3>
+                        <form>
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                            <textarea rows="4" placeholder="Share your thoughts..." required></textarea>
+                            <button type="submit" class="submit-btn">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Related Stories -->
+                <div class="related-stories">
+                    <h2 class="related-title">INKURU BIJYANYE</h2>
+
+                    {% for related in related_articles %}
+                      <a href="{% url 'article_detail' pk=related.pk %}" class="related-story">
+                          <div class="related-story-title">{{ related.title }}</div>
+                          <div class="related-story-meta">
+                              <i class="fas fa-calendar"></i> {{ related.date|date:"F d, Y" }} • By {{ related.written_by }}
+                          </div>
+                      </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- Sidebar - Trending News -->
+     <aside class="sidebar">
+    <div class="trending-box">
+        <div class="trending-header">
+            <i class="fas fa-fire"></i> Inkuru nyamukuru
+        </div>
+        {% for trending in trending_articles %}
+        <div class="trending-item-card">
+            <a href="{% url 'article_detail' pk=trending.pk %}" class="trending-link">
+                <div class="trending-card-image">
+                    {% if trending.image %}
+                        <img src="{{ trending.image.url }}" alt="{{ trending.title }}">
+                    {% else %}
+                        <img src="{% static 'images/default-news.jpg' %}" alt="Default">
+                    {% endif %}
+                </div>
+                <div class="trending-card-content">
+                    <h3 class="trending-title">{{ trending.title }}</h3>
+                    <div class="trending-meta">
+                        <span class="views">{{ trending.views }} reads</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</aside>
+        </div>
+    </div>
+{% endblock content %}

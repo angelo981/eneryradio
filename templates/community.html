@@ -1,0 +1,449 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/community.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+ <!-- Hero Section -->
+    <section class="hero-impact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Radio That <span>Drives Change</span></h1>
+                        <p class="hero-subtitle">Empowering communities, amplifying voices, transforming lives across Rwanda</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Stats -->
+            <div class="impact-stats">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="1000000">1M+</h3>
+                            <p>People Reached Annually</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="15">15+</h3>
+                            <p>National Campaigns Delivered</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="200">200+</h3>
+                            <p>Youth Trained & Supported</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Our Campaigns Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Leading Social Change</h2>
+                <p>ENERGY RADIO leads campaigns on GBV prevention, health education, youth empowerment, and social transformation</p>
+            </div>
+
+            <div class="row">
+                {% for community in podcasts %}
+                <!-- Community Campaign Card -->
+                <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="{{ community.image.url }}" alt="{{ community.title }}">
+
+                            <!-- Status badge: Active / Completed -->
+                            <span class="campaign-badge">
+                                {% if community.is_active %}Active{% else %}Completed{% endif %}
+                            </span>
+
+                            <!-- Play button only shown when a video URL exists -->
+                            {% if community.video %}
+                            <a href="{{ community.video }}" target="_blank" class="play-btn" title="Watch Video">
+                                <i class="fas fa-play"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <div class="campaign-content">
+                            <h3 class="campaign-title">{{ community.title }}</h3>
+                            <p class="campaign-description">{{ community.description }}</p>
+
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-calendar-alt"></i> {{ community.created_at|date:"M d, Y" }}
+                                </div>
+                                {% if community.content %}
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">No community campaigns found.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+                <!-- Campaign 2
+                <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=500&fit=crop" alt="Youth Empowerment">
+                            <span class="campaign-badge">Ongoing</span>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category">
+                                <i class="fas fa-graduation-cap"></i> YOUTH EMPOWERMENT
+                            </div>
+                            <h3 class="campaign-title">Campus Tour & Skills Training</h3>
+                            <p class="campaign-description">Annual campus tours providing mentorship, skills training, and career guidance to university students across Rwanda. Featuring workshops on entrepreneurship, media production, and leadership.</p>
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-users"></i> 200+ Students Trained
+                                </div>
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Campaign 3
+                <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop" alt="Health Education">
+                            <span class="campaign-badge">Active</span>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category">
+                                <i class="fas fa-heartbeat"></i> HEALTH EDUCATION
+                            </div>
+                            <h3 class="campaign-title">Health Awareness & HIV/AIDS Prevention</h3>
+                            <p class="campaign-description">Broadcasting vital health information, promoting regular testing, and reducing stigma. Partnering with healthcare providers to deliver accurate, life-saving information to communities.</p>
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-users"></i> 1M+ Reached
+                                </div>
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                Campaign 4
+                <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=500&fit=crop" alt="Mental Health">
+                            <span class="campaign-badge">New</span>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category">
+                                <i class="fas fa-brain"></i> MENTAL HEALTH
+                            </div>
+                            <h3 class="campaign-title">Breaking the Silence on Mental Health</h3>
+                            <p class="campaign-description">Creating safe spaces for mental health conversations, reducing stigma, and connecting listeners with professional support services. Weekly talk shows featuring psychologists and survivors.</p>
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-users"></i> 300,000+ Reached
+                                </div>
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                Campaign 5 -->
+                <!-- <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&h=500&fit=crop" alt="Environmental Conservation">
+                            <span class="campaign-badge">Ongoing</span>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category">
+                                <i class="fas fa-leaf"></i> ENVIRONMENT
+                            </div>
+                            <h3 class="campaign-title">Green Rwanda Initiative</h3>
+                            <p class="campaign-description">Promoting environmental conservation, tree planting campaigns, and sustainable living practices. Partnering with local communities for monthly clean-up drives and reforestation efforts.</p>
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-tree"></i> 10,000+ Trees Planted
+                                </div>
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Campaign 6 -->
+                <!-- <div class="col-lg-6">
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=500&fit=crop" alt="Child Protection">
+                            <span class="campaign-badge">Active</span>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category">
+                                <i class="fas fa-child"></i> CHILD PROTECTION
+                            </div>
+                            <h3 class="campaign-title">Protecting Our Children's Rights</h3>
+                            <p class="campaign-description">Advocating for child safety, education access, and protection from exploitation. Educating communities on children's rights and connecting families with support services.</p>
+                            <div class="campaign-meta">
+                                <div class="campaign-impact">
+                                    <i class="fas fa-users"></i> 400,000+ Families
+                                </div>
+                                <a href="#" class="campaign-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+   {% load static %}
+
+<!-- Partners Section -->
+<section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Partners in Change</h2>
+            <p>Working together with organizations committed to community transformation</p>
+        </div>
+
+        <div class="container py-5 partners-grid">
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/RDB.png' %}" alt="RDB Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/RCB.png' %}" alt="RCB Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/IMBUTOF.png' %}" alt="Imbuto Foundation Logo" class="partner-logo">
+                </div>
+
+                <!-- <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/BPN.png' %}" alt="BPN Logo" class="partner-logo">
+                </div> -->
+
+                <!-- <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/OMS.png' %}" alt="OMS Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/UNICEF.png' %}" alt="UNICEF Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/RBA.webp' %}" alt="RBA Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/ADRA.png' %}" alt="ADRA Logo" class="partner-logo">
+                </div> -->
+
+                <!-- <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/INES.png' %}" alt="INES Logo" class="partner-logo">
+                </div> -->
+
+                <!-- <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/RBC.png' %}" alt="RBC Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/WR.png' %}" alt="World Relief Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/SNV.png' %}" alt="SNV Logo" class="partner-logo">
+                </div> -->
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/care.png' %}" alt="CARE Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/CR.png' %}" alt="CR Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/NYC.png' %}" alt="NYC Logo" class="partner-logo">
+                </div>
+<!-- 
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/dian-fossey-gorilla-fund-590x200-removebg-preview.png' %}" alt="Dian Fossey Gorilla Fund Logo" class="partner-logo">
+                </div> -->
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/msh.png' %}" alt="MSH Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/pf.png' %}" alt="PF Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/bdf.png' %}" alt="BDF Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/Airtel.png' %}" alt="Airtel Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/mtn.jpg' %}" alt="MTN Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/hi.png' %}" alt="HI Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/BK.webp' %}" alt="Bank of Kigali Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/mango.png' %}" alt="Mango Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/Marriott.png' %}" alt="Marriott Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/skol.png' %}" alt="Skol Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/mashirika_logo7.png' %}" alt="Mashirika Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/rcf.jpg' %}" alt="RCF Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/rff.jpg' %}" alt="RFF Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/Nature-Rwanda.png' %}" alt="Nature Rwanda Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/js.jpg' %}" alt="JS Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/salax.jpg' %}" alt="Salax Logo" class="partner-logo">
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <img src="{% static 'img/ear.jpg' %}" alt="EAR Logo" class="partner-logo">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Real Stories, Real Impact</h2>
+                <p>Hear from those whose lives have been touched by our campaigns</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">ENERGY RADIO's GBV awareness campaign gave me the courage to speak out and seek help. The information they shared saved my life and helped me protect my children.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">M</div>
+                            <div class="author-info">
+                                <h6>Marie K.</h6>
+                                <p>GBV Survivor & Advocate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The campus tour inspired me to start my own business. The mentorship and skills training I received from ENERGY RADIO changed my entire career trajectory.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">J</div>
+                            <div class="author-info">
+                                <h6>Jean Paul N.</h6>
+                                <p>Young Entrepreneur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Their mental health programs helped me understand that it's okay to not be okay. I finally sought professional help and I'm now living a healthier, happier life.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">S</div>
+                            <div class="author-info">
+                                <h6>Samuel M.</h6>
+                                <p>Mental Health Advocate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <h2 class="cta-title">Join Us in Making a Difference</h2>
+            <p class="cta-subtitle">Your support helps us reach more communities and save more lives</p>
+            <div class="cta-buttons">
+                <a href="contact.php" class="btn-cta btn-cta-primary">
+                    <i class="fas fa-hands-helping"></i> Partner With Us
+                </a>
+                <a href="#" class="btn-cta btn-cta-secondary">
+                    <i class="fas fa-donate"></i> Support Our Campaigns
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock content %}

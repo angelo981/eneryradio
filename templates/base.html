@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Radio Rwanda - Powering Rwanda's Voice, Rhythm & Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logob.png' %}">
+    <link rel="preload" as="image" href="{% static 'images/logob.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}{% endblock extra_head %}
+  <style>
+       
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logob.png' %}" alt="Energy Radio Logo" class="navbar-logo" width="50" height="50">
+                <span class="navbar-brand-text">ENERGY RADIO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'about' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About us
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'about' %}">Who we are</a>
+                            <a class="dropdown-item" href="{% url 'team' %}">Our Team</a>
+                            <a class="dropdown-item" href="{% url 'blogs' %}">Blogs</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'talent' %}">Talent</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'news' %}">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+{% block content %}
+
+{% endblock content %}
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h5>ENERGY RADIO</h5>
+                    <p>Rwanda's most vibrant radio station bringing you the best in music, news, and entertainment.</p>
+                    <h5>Follow Us</h5>
+                    <div class="social-links">
+                        <a href="facebook" class="https://www.facebook.com/EnergyRadioRwanda"><i class="fab fa-facebook-f"></i></a>
+                        <a href="x" class="https://x.com/ENERGY888FM?s=20"><i class="fab fa-x"></i></a>
+                        <a href="instagram" class="https://www.instagram.com/energyradio88.8fm/"><i class="fab fa-instagram"></i></a>
+                        <a href="youtube" class="https://www.youtube.com/@top5sai"><i class="fab fa-youtube"></i></a>
+                        <a href="linkedin" class="https://www.linkedin.com/in/top5sai-production-8a310a74/"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h5>Contact Us</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div><strong>Head Office:</strong><br>Musanze District, Rwanda</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div><strong>Phone:</strong><br>+250 780 321 111</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div><strong>Email:</strong><br>energyradio888@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <div><strong>Frequencies:</strong><br>88.8 FM | 90.3 FM | 107.3 FM</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-section">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Our Programs</a></li>
+                        <li><a href="news"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
+                        <li><a href="#podcasts"><i class="fas fa-chevron-right"></i> Podcasts</a></li>
+                        <li><a href="#advertise"><i class="fas fa-chevron-right"></i> Advertise</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Energy Radio Rwanda. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Audio Player -->
+    <div class="audio-player-fixed">
+        <div class="container">
+            <div class="player-content">
+                <div class="player-info">
+                    <div class="player-icon">
+                        <i class="fas fa-radio"></i>
+                    </div>
+                    <div class="player-text">
+                        <h6>LIVE STREAM</h6>
+                        <p id="player-show">Morning Energy - 88.8 FM</p>
+                    </div>
+                </div>
+                <div class="player-controls">
+                    <button class="play-btn" id="playBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                      <audio id="radio-audio-player" preload="none">
+                               <!-- Utiliser le proxy Fastcast4u -->
+                   <source src="https://eu4.fastcast4u.com/proxy/energy?mp=/stream" type="audio/mpeg">
+                  
+                 </audio>
+                    <div class="volume-control">
+                        <i class="fas fa-volume-up" style="color: #54adde;"></i>
+                        <input type="range" class="volume-slider" min="0" max="100" value="70">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/js.js' %}"></script>
+</body>
+</html>
