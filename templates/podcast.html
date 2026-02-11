@@ -77,16 +77,12 @@
                 <div class="col-lg-4 col-md-6 podcast-item" data-category="{{ podcast.category.slug }}">
                     <div class="podcast-card">
                         <div class="podcast-image">
-                           <img src="{{ podcast.image_url }}" alt="{{ podcast.title }}" class="podcast-image">
-                             <video class="img-fluid ad-video" src="{{ podcast.video_url }}" 
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-                             </video>
-                            <a href="{{ podcast.video_url }}" class="play-btn">▶</a>
-                            <video >
-                            <div class="play-overlay">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <span class="podcast-badge new">NEW</span>
+                           {% comment %} <img src="{{ podcast.image_url }}" alt="{{ podcast.title }}" class="podcast-image"> {% endcomment %}
+                            {% comment %} <a href="{{ podcast.video_url }}" class="play-btn">▶</a> {% endcomment %}
+                            
+                            <iframe width="100%" height="" src="{{ podcast.video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                            {% comment %} <span class="podcast-badge new">NEW</span> {% endcomment %}
                         </div>
                         <div class="podcast-content">
                             <div class="podcast-category">

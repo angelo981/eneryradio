@@ -18,10 +18,10 @@
     <div class="category-filter">
         <div class="container">
             <div class="filter-buttons">
-                {% comment %} <button class="filter-btn active" data-category="all">All News</button> {% endcomment %}
+                <a href="{% url 'news' %}" class="filter-btn {% if not selected_category %}active{% endif %}">All News</a>
                 
                 {% for category in categories %}
-                <button class="filter-btn" data-category="{{ category.name|lower }}">{{ category.name }}</button>
+                <a href="{% url 'news' %}?category={{ category.name }}" class="filter-btn {% if selected_category|lower == category.name|lower %}active{% endif %}">{{ category.name }}</a>
                 {% endfor %}
             </div>
         </div>
@@ -34,10 +34,7 @@
 
             <!-- News Grid -->
             <div class="news-grid" id="newsGrid">
-                <!-- News Card 1 -->
-
-
-
+                {% if articles %}
                 {% for article in articles %}
                 <div class="news-card" data-category="{{ article.category.name|lower }}">
                     <img src="{{ article.image.url }}" alt="{{ article.title }}">
@@ -52,6 +49,11 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                    <p style="font-size: 1.2rem; color: #999;">No articles found in this category.</p>
+                </div>
+                {% endif %}
 
 
             <!-- Pagination -->

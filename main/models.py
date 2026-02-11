@@ -119,7 +119,23 @@ class Article(models.Model):
                 return static(self.image_url)
             return self.image_url
         return ''
-    
+
+class ArticleComment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name="Article")
+    name = models.CharField(max_length=100, verbose_name="Name")
+    email = models.EmailField(verbose_name="Email")
+    is_approved = models.BooleanField(default=True, verbose_name="Approved")
+    content = models.TextField(verbose_name="Comment")
+    created_at = models.DateTimeField(auto_now_add=True)
+   
+    class Meta:
+        verbose_name = "Article Comment"
+        verbose_name_plural = "Article Comments"
+        ordering = ['-created_at']
+   
+    def __str__(self):
+        return f"Comment by {self.name} on {self.article.title}"
+
 class ContactMessage(models.Model):
     STATUS_CHOICES = [
         ('new', 'Nouveau'),

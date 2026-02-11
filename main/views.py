@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
@@ -61,15 +62,29 @@ def community(request):
 def news(request):
     template_name="news.html"
     categories = Category.objects.all()
+    selected_category = request.GET.get('category', None)
+    
     articles = Article.objects.filter(status='published').order_by('-date')
+    if selected_category:
+        articles = articles.filter(category__name__iexact=selected_category)
+    
     context = {
         "categories": categories,
         "articles": articles,
+        "selected_category": selected_category,
     }
     return render(request, template_name, context)
 def article_detail(request, pk):
     template_name = "article_detail.html"
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        content = request.POST['content']
+        ArticleComment.objects.create(name=name, email=email, content=content, article_id=pk)
+        messages.success(request, "Your comment has been submitted and is awaiting approval.")
+        return redirect('article_detail', pk=pk)
     article = get_object_or_404(Article, pk=pk, status='published')
+    comment = ArticleComment.objects.filter(article=article, is_approved=True).order_by('-created_at')
     article.views += 1
     article.save()
     related_articles = Article.objects.filter(
@@ -83,6 +98,7 @@ def article_detail(request, pk):
 
     context = {
         "article": article,
+        "comments": comment,
         "related_articles": related_articles,
         "trending_articles": trending_articles,
     }
@@ -93,3 +109,11 @@ def community(request):
     return render(request, 'community.html', {
         'podcasts': communities,  # keeps 'podcasts' so your template loop works
     })
+
+def community_detail(request, pk):
+    template_name = "community_detail.html"
+    community = get_object_or_404(Community, pk=pk, is_active=True)
+    context = {
+        "community": community,
+    }
+    return render(request, template_name, context)
