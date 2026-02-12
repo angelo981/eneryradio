@@ -88,8 +88,8 @@
 
 /* Who We Are Section */
 .who-we-are {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 30px;
     padding: 60px 50px;
     position: relative;
@@ -135,8 +135,8 @@
 
 /* Mission & Vision Cards */
 .mv-card {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 25px;
     padding: 50px 40px;
     height: 100%;
@@ -198,8 +198,8 @@
 
 /* Values Section */
 .value-item {
-    background: rgba(139, 92, 246, 0.1);
-    border: 2px solid rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 20px;
     padding: 40px 30px;
     text-align: center;
@@ -251,8 +251,8 @@
 
 /* Coverage Section */
 .coverage-box {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 30px;
     padding: 70px 50px;
     text-align: center;
@@ -284,8 +284,8 @@
 }
 
 .frequency-badge {
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 20px;
     padding: 25px 40px;
     transition: all 0.3s;
@@ -332,8 +332,8 @@
 
 /* Leadership Section */
 .leadership-box {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 30px;
     padding: 60px 50px;
     text-align: center;
@@ -382,8 +382,8 @@
 .stat-box {
     text-align: center;
     padding: 30px;
-    background: rgba(139, 92, 246, 0.1);
-    border: 2px solid rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 20px;
     margin-bottom: 30px;
     transition: all 0.3s;

@@ -23,18 +23,13 @@
             const slides = $('.hero-slide');
             const totalSlides = slides.length;
             
-            function typeWriter(element, text, speed = 50) {
-                let i = 0;
-                element.text('');
-                
-                function type() {
-                    if (i < text.length) {
-                        element.text(element.text() + text.charAt(i));
-                        i++;
-                        setTimeout(type, speed);
-                    }
-                }
-                type();
+            function displayText(element, text) {
+                element.text(text);
+                // Trigger animation by removing and re-adding the animation
+                element.css('animation', 'none');
+                setTimeout(() => {
+                    element.css('animation', 'slideInText 0.8s ease-out forwards');
+                }, 10);
             }
             
             function changeSlide() {
@@ -44,7 +39,7 @@
                 
                 const currentTypingElement = $('#typingText' + (currentSlide + 1));
                 if (currentTypingElement.length) {
-                    setTimeout(() => typeWriter(currentTypingElement, currentTypingElement.data('text')), 300);
+                    setTimeout(() => displayText(currentTypingElement, currentTypingElement.data('text')), 300);
                 }
             }
             

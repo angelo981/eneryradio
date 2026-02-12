@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib import messages
 from datetime import date, datetime, timedelta
+from .utils import get_youtube_embed_url
 
 # Create your views here.
 def home(request):
@@ -44,7 +45,7 @@ def team(request):
     }
     return render(request, template_name, context)
 def blogs(request):
-    template_name="blogs.html"    
+    template_name="blogs.html"
     return render(request, template_name)
 
 def podcast(request):
@@ -53,6 +54,14 @@ def podcast(request):
     podcasts = PodcastShow.objects.filter(is_active=True).order_by('-created_at')
     if selected_category:
         podcasts = PodcastShow.objects.filter(category=selected_category, is_active=True).order_by('-created_at')
+    
+    # Convert video URLs to embed format
+    for podcast in podcasts:
+        if podcast.video_url:
+            podcast.embed_video_url = get_youtube_embed_url(podcast.video_url)
+        else:
+            podcast.embed_video_url = None
+    
     podcategories = PodcastCategory.objects.all()
     context = {
         "podcasts": podcasts,
@@ -94,7 +103,7 @@ def article_detail(request, pk):
     related_articles = Article.objects.filter(
         category=article.category,
         status='published'
-    ).exclude(pk=article.pk).order_by('-date')[:6]
+    ).exclude(pk=article.pk).order_by('-created_at')[:6]
 
     trending_articles = Article.objects.filter(
         status='published'

@@ -57,12 +57,15 @@
                 <div class="col-lg-4 col-md-6 podcast-item" data-category="{{ podcast.category.slug }}">
                     <div class="podcast-card">
                         <div class="podcast-image">
-                           {% comment %} <img src="{{ podcast.image_url }}" alt="{{ podcast.title }}" class="podcast-image"> {% endcomment %}
-                            {% comment %} <a href="{{ podcast.video_url }}" class="play-btn">▶</a> {% endcomment %}
-                            
-                            <iframe width="100%" height="" src="{{ podcast.video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                            {% comment %} <span class="podcast-badge new">NEW</span> {% endcomment %}
+                            {% if podcast.embed_video_url %}
+                                <iframe width="100%" height="280" src="{{ podcast.embed_video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            {% elif podcast.image %}
+                                <img src="{{ podcast.image.url }}" alt="{{ podcast.title }}" class="podcast-image-static">
+                            {% else %}
+                                <div class="podcast-placeholder">
+                                    <i class="fas fa-podcast"></i>
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="podcast-content">
                             <div class="podcast-category">
@@ -70,14 +73,6 @@
                             </div>
                             <h3 class="podcast-title">{{ podcast.title }}</h3>
                             <p class="podcast-description">{{ podcast.description }}</p>
-                            {% comment %} <div class="podcast-meta">
-                                <div class="podcast-episodes">
-                                    <i class="fas fa-list"></i> {{ podcast.episode_count }} Episodes
-                                </div>
-                                <div class="podcast-duration">
-                                    <i class="fas fa-clock"></i> {{ podcast.duration }} min
-                                </div>
-                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
