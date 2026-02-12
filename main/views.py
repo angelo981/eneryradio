@@ -9,7 +9,7 @@ from datetime import date, datetime, timedelta
 def home(request):
     template_name="index.html"
     program = Program.objects.filter(day__day=date.today().isoweekday(), is_active=True).order_by('start_time')
-    article = Article.objects.filter(status='published').order_by('-date')[:3]
+    article = Article.objects.filter(status='published').order_by('-created_at')[:3]
     podcast = PodcastShow.objects.filter(is_active=True).order_by('-created_at')[:4]
     context = {
         "programs": program,
@@ -49,11 +49,15 @@ def blogs(request):
 
 def podcast(request):
     template_name="podcast.html"
+    selected_category = request.GET.get('category', None)
     podcasts = PodcastShow.objects.filter(is_active=True).order_by('-created_at')
+    if selected_category:
+        podcasts = PodcastShow.objects.filter(category=selected_category, is_active=True).order_by('-created_at')
     podcategories = PodcastCategory.objects.all()
     context = {
         "podcasts": podcasts,
         "podcategories": podcategories,
+        "selected_category": selected_category,
     }
     return render(request, template_name, context)
 def community(request):
@@ -64,7 +68,7 @@ def news(request):
     categories = Category.objects.all()
     selected_category = request.GET.get('category', None)
     
-    articles = Article.objects.filter(status='published').order_by('-date')
+    articles = Article.objects.filter(status='published').order_by('-created_at')
     if selected_category:
         articles = articles.filter(category__name__iexact=selected_category)
     

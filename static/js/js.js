@@ -37,26 +37,14 @@
                 type();
             }
             
-            const typingTexts = [
-                "Powering Rwanda's Voice, Rhythm & Community",
-                "Your home for music, entertainment, youth inspiration, and impactful communication across Rwanda.",
-                "Tune in. Engage. Feel the ENERGY."
-            ];
-            
-            typeWriter($('#typingText1'), typingTexts[0]);
-            
             function changeSlide() {
                 slides.eq(currentSlide).removeClass('active');
                 currentSlide = (currentSlide + 1) % totalSlides;
                 slides.eq(currentSlide).addClass('active');
                 
-                if (currentSlide === 0) {
-                    setTimeout(() => typeWriter($('#typingText1'), typingTexts[0]), 300);
-                } else if (currentSlide === 1) {
-                    setTimeout(() => typeWriter($('#typingText2'), typingTexts[1]), 300);
-                     } else if (currentSlide === 2) {
-                    setTimeout(() => typeWriter($('#typingText3'), typingTexts[2]), 300);
-                    
+                const currentTypingElement = $('#typingText' + (currentSlide + 1));
+                if (currentTypingElement.length) {
+                    setTimeout(() => typeWriter(currentTypingElement, currentTypingElement.data('text')), 300);
                 }
             }
             

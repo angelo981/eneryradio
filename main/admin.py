@@ -18,8 +18,8 @@ class DayAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'category', 'author', 'date', 'status', 'views')
-    list_filter = ('category', 'status', 'date')
+    list_display = ('title', 'category', 'author', 'created_at', 'status', 'views')
+    list_filter = ('category', 'status', 'created_at')
     search_fields = ('title', 'content')
     readonly_fields = ('views', 'author')
     # exclude = ()

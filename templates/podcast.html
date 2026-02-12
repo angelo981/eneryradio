@@ -24,39 +24,19 @@
         </div>
     </section>
 
-    <!-- Featured Podcast
-    <section class="container">
-        <div class="featured-podcast">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="featured-content">
-                        <span class="featured-badge"><i class="fas fa-star"></i> FEATURED THIS WEEK</span>
-                        <h2 class="featured-title">Energy Talk: Leadership & Innovation in Rwanda</h2>
-                        <p class="featured-description">Join us for an inspiring conversation with tech entrepreneurs and innovators shaping Rwanda's future. Discover stories of resilience, creativity, and transformation.</p>
-                        <a href="#" class="featured-btn">
-                            <i class="fas fa-play-circle"></i> Listen Now
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Featured" style="border-radius: 20px; max-width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Category Filters -->
     <section class="category-filters">
         <div class="container">
             <div class="text-center">
-                {% for category in podcategories %}
-                <button class="filter-btn" data-category="{{ category.slug }}">
-                    <span><i class="{{ category.icon }}"></i> {{ category.name }}</span>
-                </button>
-                {% endfor %}
-                {% comment %} <button class="filter-btn active" data-category="all">
+                <a href="{% url 'podcast' %}" class="filter-btn {% if not selected_category %}active{% endif %}" data-category="all">
                     <span><i class="fas fa-th"></i> All Shows</span>
-                </button> {% endcomment %}
+                </a>
+                {% for category in podcategories %}
+                <a href="{% url 'podcast'%}?category={{ category.pk }}" class="filter-btn {% if selected_category|stringformat:'s' == category.pk|stringformat:'s' %}active{% endif %}" data-category="{{ category.slug }}">
+                    <span><i class="{{ category.icon }}"></i> {{ category.name }}</span>
+                </a>
+                {% endfor %}
+                
             </div>
         </div>
     </section>
