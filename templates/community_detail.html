@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/community_detail.css' %}">
+{% endblock extra_head %}
+
+
+{% block content %}
+<!-- Main Content -->
+<div class="container-fluid">
+    <div class="main-grid">
+        <!-- Main community -->
+        <div class="community-container">
+
+
+            <!-- community Image -->
+            <div class="article-image">
+                <img src="{{ community.image.url }}" alt="{{ community.title }}">
+            </div>
+
+
+            <!-- community Meta -->
+            <div class="article-meta">
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        {{ community.created_at|date:"F d, Y" }}
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        {{ community.created_at|time:"H:i" }}
+                    </div>
+                </div>  
+            </div>
+
+
+            <!-- community Title -->
+            <h1 class="article-title">{{ community.title }}</h1>
+
+
+            <!-- community Content -->
+            <div class="community-content">
+                <p>{{ community.content|safe }}</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

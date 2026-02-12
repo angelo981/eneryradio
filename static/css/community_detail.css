@@ -1,0 +1,179 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+
+.back-button:hover {
+    color: #764ba2;
+    text-decoration: none;
+    transform: translateX(-5px);
+}
+
+
+/* Header Image */
+.detail-header {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    object-fit: cover;
+}/* ===== Layout ===== */
+.container-fluid {
+    width: 100%;
+    padding: 40px 20px;
+    background-color: #f5f7fa;
+}
+
+
+.main-grid {
+    display: flex;
+    justify-content: center;
+}
+
+
+.community-container {
+    max-width: 850px;
+    width: 100%;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ===== Image ===== */
+.article-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 25px;
+}
+
+
+/* ===== Meta Section ===== */
+.article-meta {
+    margin-bottom: 15px;
+}
+
+
+.meta-info {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.meta-item i {
+    color: #0d6efd; /* Blue accent */
+}
+
+
+/* ===== Title ===== */
+.article-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+    line-height: 1.3;
+}
+
+
+/* ===== Content ===== */
+.community-content {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+
+.community-content p {
+    margin-bottom: 20px;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .community-container {
+        padding: 25px;
+    }
+
+
+    .article-title {
+        font-size: 24px;
+    }
+
+
+    .meta-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+
+
+
+
+
+/* Title and Meta */
+.detail-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+
+.detail-meta {
+    display: flex;
+
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    flex-wrap: wrap;
+}
+
+
+.meta-item {
+    display: flex;
+    
+    gap: 10px;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+
+.meta-item i {
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+
+.badge-large {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}

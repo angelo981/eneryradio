@@ -102,6 +102,8 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
         }
 
         .filter-btn::before {
@@ -117,17 +119,28 @@
             transition: all 0.5s;
         }
 
-        .filter-btn:hover::before,
-        .filter-btn.active::before {
+        .filter-btn:hover::before {
             width: 300px;
             height: 300px;
         }
 
-        .filter-btn:hover,
-        .filter-btn.active {
+        .filter-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(84, 173, 222, 0.4);
+        }
+
+        .filter-btn.active::before {
+            width: 300px;
+            height: 300px;
         }
 
         .filter-btn span {

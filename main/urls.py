@@ -15,11 +15,7 @@ urlpatterns = [
     path('podcast', views.podcast, name="podcast"),
     path('community', views.community, name="community"),
     path('news', views.news, name="news"),
-    path('facebook', RedirectView.as_view(url='https://www.facebook.com/EnergyRadioRwanda'), name='facebook'),
-    path('youtube', RedirectView.as_view(url='https://www.youtube.com/@top5sai'), name='youtube'),
-    path('instagram', RedirectView.as_view(url='https://www.instagram.com/energyradio88.8fm/'), name='instagram'),
-    path('x', RedirectView.as_view(url='https://x.com/ENERGY888FM?s=20'), name='x'),
-    path('linkedin', RedirectView.as_view(url='https://linkedin.com/company/yourcompany'), name='linkedin'),
+    path('community_detail/<int:pk>/', views.community_detail, name='community_detail'),
 ]
 
 

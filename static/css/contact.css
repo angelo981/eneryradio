@@ -88,8 +88,8 @@
 
         /* Contact Info Cards */
         .contact-info-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-            border: 2px solid rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+            border: 2px solid #54adde;
             border-radius: 25px;
             padding: 45px 35px;
             text-align: center;
@@ -169,8 +169,8 @@
         }
 
         .contact-form-box {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-            border: 2px solid rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+            border: 2px solid #54adde;
             border-radius: 30px;
             padding: 60px 50px;
             max-width: 900px;
@@ -235,8 +235,8 @@
 
         /* Map Section */
         .map-section {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-            border: 2px solid rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+            border: 2px solid #54adde;
             border-radius: 30px;
             padding: 50px 40px;
             text-align: center;

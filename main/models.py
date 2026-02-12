@@ -50,19 +50,10 @@ class Program(models.Model):
         return f"{self.day.get_day_display()} - {self.title} ({self.start_time} - {self.end_time})"
     
 class Category(models.Model):
-    COLOR_CHOICES = [
-        ('primary', 'Primary'),
-        ('danger', 'Danger'),
-        ('success', 'Success'),
-        ('warning', 'Warning'),
-        ('info', 'Info'),
-        ('secondary', 'Secondary'),
-    ]
    
     name = models.CharField(max_length=100, verbose_name="name")
     slug = models.SlugField(max_length=100, unique=True, verbose_name="Slug")
     description = models.TextField(blank=True, null=True, verbose_name="Description")
-    color = models.CharField(max_length=20, choices=COLOR_CHOICES, default='primary', verbose_name="Color")
     icon = models.CharField(max_length=50, blank=True, null=True, verbose_name="Icon")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -90,36 +81,36 @@ class Article(models.Model):
     excerpt = models.TextField(blank=False, null=False, verbose_name="Sub content")
     content = models.TextField(blank=False, null=False, verbose_name="Full Content")
     image = models.ImageField(upload_to='articles/', blank=False, null=False, verbose_name="Cover Image")
-    date = models.DateField(default=timezone.now, verbose_name="Publication Date")
     views = models.IntegerField(default=0, verbose_name="Views")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name="Status")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=False, related_name='articles', verbose_name="Author")
-    created_at = models.DateTimeField(auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
    
     class Meta:
         verbose_name = "Article"
         verbose_name_plural = "Articles"
-        ordering = ['-date', '-created_at']
+        ordering = ['-created_at']
    
     def __str__(self):
         return self.title
+
+class ArticleComment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name="Article")
+    name = models.CharField(max_length=100, verbose_name="Name")
+    email = models.EmailField(verbose_name="Email")
+    is_approved = models.BooleanField(default=True, verbose_name="Approved")
+    content = models.TextField(verbose_name="Comment")
+    created_at = models.DateTimeField(auto_now_add=True)
    
-    @property
-    def image_src(self):
-        try:
-            if self.image and hasattr(self.image, 'name') and self.image.name:
-                return self.image.url
-        except (ValueError, AttributeError):
-            pass
-       
-        if self.image_url:
-            if not self.image_url.startswith('http'):
-                from django.templatetags.static import static
-                return static(self.image_url)
-            return self.image_url
-        return ''
-    
+    class Meta:
+        verbose_name = "Article Comment"
+        verbose_name_plural = "Article Comments"
+        ordering = ['-created_at']
+   
+    def __str__(self):
+        return f"Comment by {self.name} on {self.article.title}"
+
 class ContactMessage(models.Model):
     STATUS_CHOICES = [
         ('new', 'Nouveau'),
