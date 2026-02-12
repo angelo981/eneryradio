@@ -199,7 +199,6 @@ width: 100%;
 
 .hero-slide {
 display: none;
-animation: fadeIn 0.8s ease-in-out;
 }
 
 .hero-slide.active {
@@ -246,18 +245,20 @@ min-height: 60px;
 }
 
 .typing-text {
-display: inline-block;
-border-right: 3px solid #54adde;
-animation: blink 0.7s step-end infinite;
+    display: inline-block;
+    animation: slideInText 0.8s ease-out forwards;
+    opacity: 0;
 }
 
-@keyframes blink {
-from, to {
-    border-color: transparent;
-}
-50% {
-    border-color: #54adde;
-}
+@keyframes slideInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-buttons {
@@ -505,8 +506,8 @@ margin: 0;
 }
 
 .news-card {
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
     border-radius: 15px;
     height: 100%;
     overflow: hidden;
@@ -589,7 +590,7 @@ margin: 0;
 .btn-read-more {
     background: linear-gradient(45deg, #54adde,#54adde);
     border: none;
-    color: white;
+  
     padding: 8px 16px;  /* Reduced from 10px 20px */
     border-radius: 20px;
     transition: all 0.3s;
@@ -834,7 +835,7 @@ flex: 1;
 .player-icon {
 width: 50px;
 height: 50px;
-background: linear-gradient(45deg, #54adde, white);
+background: linear-gradient(45deg, #54adde, #54adde );
 border-radius: 10px;
 display: flex;
 align-items: center;

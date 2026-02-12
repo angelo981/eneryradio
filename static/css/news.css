@@ -73,7 +73,7 @@
         }
 
         .featured-card {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(84, 173, 222, 0.2);
             border: 2px solid rgba(139, 92, 246, 0.3);
             border-radius: 20px;
             overflow: hidden;
@@ -141,7 +141,7 @@
         }
 
         .news-card {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(84, 173, 222, 0.2);
             border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: 15px;
             overflow: hidden;
@@ -213,9 +213,9 @@
         }
 
         .btn-read-more {
-            background: linear-gradient(45deg, #54adde, white);
+            background: linear-gradient(45deg, #54adde,#54adde);
             border: none;
-            color: white;
+        
             padding: 10px 20px;
             border-radius: 20px;
             transition: all 0.3s;
@@ -229,7 +229,7 @@
 
         .btn-read-more:hover {
             transform: scale(1.05);
-            color: white;
+           
             box-shadow: 0 5px 15px rgba(84, 173, 222, 0.4);
         }
 

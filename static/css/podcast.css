@@ -273,14 +273,32 @@
             overflow: hidden;
         }
 
-        .podcast-image img {
+        .podcast-image img,
+        .podcast-image-static {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s;
         }
 
-        .podcast-card:hover .podcast-image img {
+        .podcast-image iframe {
+            width: 100%;
+            height: 280px;
+        }
+
+        .podcast-placeholder {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.1) 0%, rgba(84, 173, 222, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(84, 173, 222, 0.3);
+        }
+
+        .podcast-card:hover .podcast-image img,
+        .podcast-card:hover .podcast-image-static {
             transform: scale(1.1);
         }
 

@@ -317,7 +317,7 @@
                             <i class="{{ podcast.category.icon }}"></i>
                         {% endif %}
                         <h5>{{ podcast.title }}</h5>
-                        <p>{{ podcast.description|truncatewords:20 }}</p>
+                        {% comment %} <p>{{ podcast.description|truncatewords:20 }}</p> {% endcomment %}
                     </div>
                 </div>
                 {% endfor %}
