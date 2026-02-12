@@ -94,7 +94,7 @@ def article_detail(request, pk):
     related_articles = Article.objects.filter(
         category=article.category,
         status='published'
-    ).exclude(pk=article.pk).order_by('-date')[:6]
+    ).exclude(pk=article.pk).order_by('-created_at')[:6]
 
     trending_articles = Article.objects.filter(
         status='published'
