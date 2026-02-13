@@ -87,10 +87,10 @@ if DEBUG is False:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'energyradio',
-            'USER': 'root',
+            'USER': 'energy',
             'PORT': '3306',
             'HOST': '127.0.0.1',
-            'PASSWORD': '',
+            'PASSWORD': 'Energy@radio12',
             'OPTIONS': {  
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
             }
