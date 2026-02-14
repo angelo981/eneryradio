@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a87jmq)4vx7oqtx&6xzdy1b-j(-ae^de-@c3(lvi2%!8n*k*62'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG is False:
-    ALLOWED_HOSTS = ['44.207.175.39']
-    HOST = "http://44.207.175.39/"
+    ALLOWED_HOSTS = ['44.207.175.39', 'energy.rw', 'www.energy.rw']
+    HOST = "https://energy.rw"
 else:
     ALLOWED_HOSTS = ['*']
     HOST = "http://127.0.0.1:8000/"
@@ -87,10 +87,9 @@ if DEBUG is False:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'energyradio',
-            'USER': 'root',
+            'USER': 'energy',
             'PORT': '3306',
-            'HOST': '127.0.0.1',
-            'PASSWORD': '',
+            'PASSWORD': 'Energy@radio12',
             'OPTIONS': {  
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
             }
