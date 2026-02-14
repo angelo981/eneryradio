@@ -10,10 +10,10 @@
                 <div class="hero-slide active">
                     <div class="hero-content">
                         <h2>ENERGY RADIO</h2>
-                        <p class="tagline"><span id="typingText1" class="typing-text" data-text="Powering Rwanda's Voice, Rhythm & Community"></span></p>
+                        <p class="tagline"><span id="heroTagline" class="typing-text"></span></p>
                         
                         <div class="hero-buttons">
-                            <a href="#" class="btn-hero btn-live">
+                            <a href="#" class="btn-hero btn-live" onclick="playLivestream(event)">
                                 <i class="fas fa-circle"></i> Listen Live
                             </a>
                             <a href="#programs" class="btn-hero btn-programs">
@@ -26,53 +26,7 @@
 
                         <div class="now-playing-box">
                             <h6>NOW PLAYING</h6>
-                            <p id="nowPlaying">pom pom - Bruce Melodie</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide">
-                    <div class="hero-content">
-                        <h2>ENERGY RADIO</h2>
-                        <p class="tagline"><span id="typingText2" class="typing-text" data-text="Your home for music, entertainment, youth inspiration, and impactful communication across Rwanda."></span></p>
-                        
-                        <div class="hero-buttons">
-                            <a href="#" class="btn-hero btn-live">
-                                <i class="fas fa-circle"></i> Listen Live
-                            </a>
-                            <a href="#programs" class="btn-hero btn-programs">
-                                <i class="fas fa-radio"></i> View Programs
-                            </a>
-                            <a href="#advertise" class="btn-hero btn-advertise">
-                                <i class="fas fa-bullhorn"></i> Advertise With Us
-                            </a>
-                        </div>
-
-                        <div class="now-playing-box">
-                            <h6>NOW PLAYING</h6>
-                            <p id="nowPlaying2">pom pom - Bruce Melodie</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide">
-                    <div class="hero-content">
-                        <h2>ENERGY RADIO</h2>
-                        <p class="tagline"><span id="typingText3" class="typing-text" data-text="Tune in. Engage. Feel the ENERGY."></span></p>
-                        
-                        <div class="hero-buttons">
-                            <a href="#" class="btn-hero btn-live">
-                                <i class="fas fa-circle"></i> Listen Live
-                            </a>
-                            <a href="#programs" class="btn-hero btn-programs">
-                                <i class="fas fa-radio"></i> View Programs
-                            </a>
-                            <a href="#advertis" class="btn-hero btn-advertise">
-                                <i class="fas fa-bullhorn"></i> Advertise With Us
-                            </a>
-                        </div>
-
-                        <div class="now-playing-box">
-                            <h6>NOW PLAYING</h6>
-                            <p id="nowPlaying3">pom pom - Bruce Melodie</p>
+                            <p id="nowPlayin" class="current-song">Loading...</p>
                         </div>
                     </div>
                 </div>
@@ -203,7 +157,7 @@
 
     <!-- Floating Button -->
     <div class="floating-btn" id="interactionBtn">
-        <a href="https://wa.me/0780057380"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+        <a href="https://wa.me/+250780057380"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
     </div>
 
     <!-- Combined Modal -->
@@ -331,7 +285,7 @@
     </section>
 
     <!-- Advertise Section -->
-    <section id="advertis" class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+    <section id="advertise" class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
         <div class="container">
             <div class="section-title">
                 <h2>Advertise With ENERGY RADIO</h2>

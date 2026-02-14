@@ -1,4 +1,33 @@
         $(document).ready(function(){
+            // Hero taglines - rotate every 7 seconds
+            const heroTaglines = [
+                "Powering Rwanda's Voice, Rhythm & Community",
+                "Your home for music, entertainment, youth inspiration, and impactful communication across Rwanda.",
+                "Tune in. Engage. Feel the ENERGY."
+            ];
+            let currentTaglineIndex = 0;
+            const heroTaglineElement = $('#heroTagline');
+            
+            function displayTagline(text) {
+                heroTaglineElement.fadeOut(300, function() {
+                    $(this).text(text);
+                    // Trigger slide-up animation by removing and re-adding the class
+                    $(this).removeClass('slideInText');
+                    // Force reflow to restart animation
+                    void $(this)[0].offsetWidth;
+                    $(this).addClass('slideInText').fadeIn(300);
+                });
+            }
+            
+            // Display first tagline immediately with animation
+            heroTaglineElement.text(heroTaglines[0]).addClass('slideInText');
+            
+            // Rotate taglines every 7 seconds
+            setInterval(function() {
+                currentTaglineIndex = (currentTaglineIndex + 1) % heroTaglines.length;
+                displayTagline(heroTaglines[currentTaglineIndex]);
+            }, 7000);
+            
             // News Ticker Auto Slide
             let currentNewsIndex = 0;
             const newsSlides = $('.news-ticker-slide-full');
@@ -17,50 +46,21 @@
                 $('#newsTickerWrapper').addClass('hidden');
                 $('.hero-section').css('margin-top', '70px');
             });
-
-            // Hero Slider
-            let currentSlide = 0;
-            const slides = $('.hero-slide');
-            const totalSlides = slides.length;
             
-            function displayText(element, text) {
-                element.text(text);
-                // Trigger animation by removing and re-adding the animation
-                element.css('animation', 'none');
-                setTimeout(() => {
-                    element.css('animation', 'slideInText 0.8s ease-out forwards');
-                }, 10);
-            }
-            
-            function changeSlide() {
-                slides.eq(currentSlide).removeClass('active');
-                currentSlide = (currentSlide + 1) % totalSlides;
-                slides.eq(currentSlide).addClass('active');
-                
-                const currentTypingElement = $('#typingText' + (currentSlide + 1));
-                if (currentTypingElement.length) {
-                    setTimeout(() => displayText(currentTypingElement, currentTypingElement.data('text')), 300);
-                }
-            }
-            
-            setInterval(changeSlide, 7000);
-            
-         // Audio player
-let isPlaying = false;
+         // Audio player - Global state for synchronization
+window.isPlaying = false;
 const audio = document.getElementById("radio-audio-player");
 
 $('#playBtn').click(function () {
-
-    if (!isPlaying) {
+    if (!window.isPlaying) {
         audio.play();                 // ▶ PLAY STREAM
         $(this).html('<i class="fas fa-pause"></i>');
-        isPlaying = true;
+        window.isPlaying = true;
     } else {
         audio.pause();                // ⏸ PAUSE STREAM
         $(this).html('<i class="fas fa-play"></i>');
-        isPlaying = false;
+        window.isPlaying = false;
     }
-
 });
 $('.volume-slider').on('input', function () {
     audio.volume = $(this).val() / 100;
@@ -87,9 +87,13 @@ $('.volume-slider').on('input', function () {
             ];
             let currentSong = 0;
             
+            // Update now playing on load
+            $('#nowPlaying').text(songs[0]);
+            
+            // Update every 10 seconds
             setInterval(function() {
                 currentSong = (currentSong + 1) % songs.length;
-                $('#nowPlaying, #nowPlaying2, #nowPlaying3').fadeOut(300, function() {
+                $('#nowPlaying').fadeOut(300, function() {
                     $(this).text(songs[currentSong]).fadeIn(300);
                 });
             }, 10000);
@@ -179,3 +183,35 @@ $('.volume-slider').on('input', function () {
                 }
             });
         });
+
+        // Function to play livestream from hero section buttons
+        function playLivestream(event) {
+            event.preventDefault();
+            
+            // Get the audio player and play button
+            const audio = document.getElementById("radio-audio-player");
+            const playBtn = document.getElementById("playBtn");
+            
+            if (audio && playBtn) {
+                // Toggle play/pause
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        // Update play button to show pause icon
+                        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        window.isPlaying = true;
+                        
+                        // Scroll to show the player
+                        const playerFixed = document.querySelector('.audio-player-fixed');
+                        if (playerFixed) {
+                            playerFixed.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }).catch(error => {
+                        console.error('Error playing stream:', error);
+                    });
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    window.isPlaying = false;
+                }
+            }
+        }
