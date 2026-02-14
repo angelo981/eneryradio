@@ -80,10 +80,10 @@ $('.volume-slider').on('input', function () {
             // Dynamic Now Playing
             const songs = [
                 "pom pom - Bruce Melodie",
-                "Ndakwemera - The Ben",
-                "Malaika - Ariel Wayz",
-                "Byambere - Meddy",
-                "Champion - Nel Ngabo"
+                "Naremenya - The Ben",
+                "Bad - Ariel Wayz",
+                "Slowly - Meddy",
+                "Nzahinduka - Nel Ngabo"
             ];
             let currentSong = 0;
             
