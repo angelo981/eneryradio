@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a87jmq)4vx7oqtx&6xzdy1b-j(-ae^de-@c3(lvi2%!8n*k*62'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG is False:
-    ALLOWED_HOSTS = ['44.207.175.39', 'energy.rw', 'www.energy.rw']
+    ALLOWED_HOSTS = ['44.207.175.39', 'energy.rw', 'www.energy.rw', 'http://energy.rw']
     HOST = "https://energy.rw"
 else:
     ALLOWED_HOSTS = ['*']

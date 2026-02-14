@@ -280,6 +280,9 @@ display: inline-flex;
 align-items: center;
 gap: 10px;
 }
+.btn-hero:hover {
+    text-decoration: none;
+}
 
 .btn-live {
 background: #ef4444;
