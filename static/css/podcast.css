@@ -168,8 +168,8 @@
     backdrop-filter: blur(10px);
 
     /* ── Fixed stable size ── */
-    width: 320px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     min-width: 320px;
     min-height: 300px;
     max-width: 320px;
@@ -205,7 +205,7 @@
 /* ── Inner content: clip and clamp so nothing stretches the card ── */
 .podcast-card-cover {
     width: 100%;
-    height: 160px;
+    height: 100%;
     overflow: hidden;
     flex-shrink: 0;
     position: relative;

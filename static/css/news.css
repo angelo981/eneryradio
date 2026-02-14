@@ -141,8 +141,8 @@
         }
 
         .news-card {
-            background: rgba(84, 173, 222, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+            border: 2px solid #54adde;
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.3s;
