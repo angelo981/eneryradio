@@ -1,10 +1,11 @@
 from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from django.contrib import messages
 from datetime import date, datetime, timedelta
 from .utils import get_youtube_embed_url
+import json
 
 # Create your views here.
 def home(request):
@@ -130,3 +131,4 @@ def community_detail(request, pk):
         "community": community,
     }
     return render(request, template_name, context)
+

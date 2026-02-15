@@ -213,7 +213,11 @@
         .btn-submit {
             background: linear-gradient(45deg, #54adde, #54adde);
             border: none;
+<<<<<<< HEAD
             color: white;
+=======
+            color: #fffffff7;
+>>>>>>> fc6d5e0be506bf833a2be1c4d95e1a71925bef55
             padding: 20px 55px;
             border-radius: 50px;
             font-weight: bold;

@@ -284,59 +284,62 @@ gap: 10px;
     text-decoration: none;
 }
 
+.btn-hero:hover {
+    text-decoration: none;
+}
 .btn-live {
-background: #ef4444;
-color: white; .ad-card {
-        margin-bottom: 30px;
-        transition: transform 0.3s ease;
-    }
+    background: #ef4444;
+    color: white; .ad-card {
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
 
-    .ad-card:hover {
-        transform: translateY(-5px);
-    }
+.ad-card:hover {
+    transform: translateY(-5px);
+}
 
-    .ad-placeholder {
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
+.ad-placeholder {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
 
-    .ad-video {
-        display: block;
-        transition: opacity 0.3s ease;
-    }
+.ad-video {
+    display: block;
+    transition: opacity 0.3s ease;
+}
 
-    .ad-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+.ad-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-    .ad-card:hover .ad-overlay {
-        opacity: 1;
-    }
+.ad-card:hover .ad-overlay {
+    opacity: 1;
+}
 
-    .ad-overlay i {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
+.ad-overlay i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
 
-    .ad-overlay p {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 500;
-    }
+.ad-overlay p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
 }
 
 .btn-live:hover {
@@ -928,7 +931,9 @@ display: flex;
 gap: 15px;
 flex-wrap: wrap;
 }
-
+.social-links a{
+    color: #ffffff;
+}
 .social-link {
 width: 40px;
 height: 40px;
