@@ -41,9 +41,9 @@
                     <div class="news-card-body">
                         <span class="news-badge {{ article.category.name|lower }}">{{ article.category.name }}</span>
                         <h5>{{ article.title }}</h5>
-                        <div class="meta">
+                        <!-- <div class="meta">
                             <i class="fas fa-calendar"></i> {{ article.date|date:"F d, Y" }}
-                        </div>
+                        </div> -->
                         <p>{{ article.excerpt }}</p>
                         <a href="{% url 'article_detail' article.pk %}" class="btn-read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>

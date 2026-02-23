@@ -90,17 +90,27 @@ def news(request):
     return render(request, template_name, context)
 def article_detail(request, pk):
     template_name = "article_detail.html"
+
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         content = request.POST['content']
-        ArticleComment.objects.create(name=name, email=email, content=content, article_id=pk)
+        ArticleComment.objects.create(
+            name=name,
+            email=email,
+            content=content,
+            article_id=pk
+        )
         messages.success(request, "Your comment has been submitted and is awaiting approval.")
         return redirect('article_detail', pk=pk)
+
     article = get_object_or_404(Article, pk=pk, status='published')
-    comment = ArticleComment.objects.filter(article=article, is_approved=True).order_by('-created_at')
-    article.views += 1
-    article.save()
+
+    comment = ArticleComment.objects.filter(
+        article=article,
+        is_approved=True
+    ).order_by('-created_at')
+
     related_articles = Article.objects.filter(
         category=article.category,
         status='published'
@@ -108,7 +118,7 @@ def article_detail(request, pk):
 
     trending_articles = Article.objects.filter(
         status='published'
-    ).order_by('-views')[:5]
+    ).order_by('-created_at')[:5]
 
     context = {
         "article": article,

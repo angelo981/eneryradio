@@ -81,7 +81,6 @@ class Article(models.Model):
     excerpt = models.TextField(blank=False, null=False, verbose_name="Sub content")
     content = models.TextField(blank=False, null=False, verbose_name="Full Content")
     image = models.ImageField(upload_to='articles/', blank=False, null=False, verbose_name="Cover Image")
-    views = models.IntegerField(default=0, verbose_name="Views")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name="Status")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=False, related_name='articles', verbose_name="Author")
     created_at = models.DateTimeField(auto_now_add=True)

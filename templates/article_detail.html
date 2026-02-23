@@ -91,9 +91,9 @@
                     {% for related in related_articles %}
                       <a href="{% url 'article_detail' pk=related.pk %}" class="related-story">
                           <div class="related-story-title">{{ related.title }}</div>
-                          <div class="related-story-meta">
+                          <!-- <div class="related-story-meta">
                               <i class="fas fa-calendar"></i> {{ related.date|date:"F d, Y" }} • By {{ related.written_by }}
-                          </div>
+                          </div> -->
                       </a>
                     {% endfor %}
 
@@ -119,7 +119,7 @@
                 <div class="trending-card-content">
                     <h3 class="trending-title">{{ trending.title }}</h3>
                     <div class="trending-meta">
-                        <span class="views">{{ trending.views }} reads</span>
+                        <!-- <span class="views">{{ trending.views }} reads</span> -->
                     </div>
                 </div>
             </a>

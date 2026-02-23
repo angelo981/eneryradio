@@ -18,10 +18,10 @@ class DayAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'category', 'author', 'created_at', 'status', 'views')
+    list_display = ('title', 'category', 'author', 'created_at', 'status')
     list_filter = ('category', 'status', 'created_at')
     search_fields = ('title', 'content')
-    readonly_fields = ('views', 'author')
+    readonly_fields = ('author',)
     # exclude = ()
     summernote_fields = ('content',)
     def save_model(self, request, obj, form, change):
