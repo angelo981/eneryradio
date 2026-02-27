@@ -3,6 +3,187 @@
 {% load static %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/team.css' %}">
+<style>
+    /* Presenter Modal Styles */
+    .presenter-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    .presenter-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .presenter-modal-content {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-radius: 15px;
+        padding: 40px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        color: #fff;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    .presenter-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #54adde;
+        transition: color 0.3s ease;
+    }
+
+    .presenter-modal-close:hover {
+        color: #fff;
+    }
+
+    .presenter-modal-header {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 30px;
+        align-items: flex-start;
+    }
+
+    .presenter-modal-image {
+        flex-shrink: 0;
+    }
+
+    .presenter-modal-image img {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        object-fit: cover;
+        border: 3px solid #54adde;
+    }
+
+    .presenter-modal-info h2 {
+        color: #54adde;
+        font-size: 1.8rem;
+        margin: 0 0 10px 0;
+    }
+
+    .presenter-modal-info .title {
+        color: #a0a0a0;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+
+    .presenter-modal-description {
+        color: #d1d5db;
+        line-height: 1.8;
+        margin-bottom: 25px;
+        text-align: justify;
+    }
+
+    .presenter-modal-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .presenter-modal-social a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #54adde;
+        color: #fff;
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .presenter-modal-social a:hover {
+        background-color: #fff;
+        color: #54adde;
+        transform: scale(1.1);
+    }
+
+    .presenter-modal-social .whatsapp:hover {
+        background-color: #25d366;
+        color: #fff;
+    }
+
+    .presenter-modal-social .instagram:hover {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: #fff;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Make presenter card clickable */
+    .presenter-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .presenter-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(84, 173, 222, 0.2);
+    }
+
+    .presenter-card:hover .presenter-image {
+        filter: brightness(0.8);
+    }
+
+    @media (max-width: 768px) {
+        .presenter-modal-header {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .presenter-modal-content {
+            padding: 30px 20px;
+            width: 95%;
+        }
+
+        .presenter-modal-info h2 {
+            font-size: 1.5rem;
+        }
+
+        .presenter-modal-image img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+</style>
 {% endblock extra_head %}
 {% block content %}
 
@@ -24,7 +205,7 @@
         <div class="row">
             {% for presenter in team %}        
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="presenter-card">
+                    <div class="presenter-card" onclick="openPresenterModal({{ presenter.id }})">
                         <!-- Image -->
                         <img src="{{ presenter.image.url }}" alt="{{ presenter.name }}" class="presenter-image">
                         
@@ -39,13 +220,13 @@
                         <!-- ✅ SOCIAL MEDIA LINKS -->
                         <div class="presenter-social">
                             {% if presenter.whatsapp_url %}
-                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp" onclick="event.stopPropagation();">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                             {% endif %}
                             
                             {% if presenter.instagram_url %}
-                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram">
+                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram" onclick="event.stopPropagation();">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             {% endif %}
@@ -57,6 +238,88 @@
     </div>
 </section>
 
+<!-- Presenter Modal -->
+<div id="presenterModal" class="presenter-modal">
+    <div class="presenter-modal-content">
+        <span class="presenter-modal-close" onclick="closePresenterModal()">&times;</span>
+        
+        <div class="presenter-modal-header">
+            <div class="presenter-modal-image">
+                <img id="modalPresenterImage" src="" alt="Presenter">
+            </div>
+            <div class="presenter-modal-info">
+                <h2 id="modalPresenterName"></h2>
+                <p class="title" id="modalPresenterTitle"></p>
+            </div>
+        </div>
+        
+        <div class="presenter-modal-description" id="modalPresenterDescription"></div>
+        
+        <div class="presenter-modal-social" id="modalPresenterSocial"></div>
+    </div>
+</div>
 
+<script>
+    // Presenter data stored in dataset
+    const presenterData = {
+        {% for presenter in team %}
+        {{ presenter.id }}: {
+            name: "{{ presenter.name }}",
+            title: "{{ presenter.title }}",
+            description: "{{ presenter.description|default:'' }}",
+            image: "{{ presenter.image.url }}",
+            whatsapp: "{{ presenter.whatsapp_url|default:'' }}",
+            instagram: "{{ presenter.instagram_url|default:'' }}"
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    function openPresenterModal(presenterId) {
+        const data = presenterData[presenterId];
+        if (!data) return;
+
+        // Set modal content
+        document.getElementById('modalPresenterImage').src = data.image;
+        document.getElementById('modalPresenterName').textContent = data.name;
+        document.getElementById('modalPresenterTitle').textContent = data.title;
+        document.getElementById('modalPresenterDescription').textContent = data.description || 'A talented member of the Energy Radio team.';
+
+        // Build social links
+        let socialHtml = '';
+        if (data.whatsapp) {
+            socialHtml += `<a href="${data.whatsapp}" target="_blank" class="whatsapp" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>`;
+        }
+        if (data.instagram) {
+            socialHtml += `<a href="${data.instagram}" target="_blank" class="instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>`;
+        }
+        document.getElementById('modalPresenterSocial').innerHTML = socialHtml;
+
+        // Show modal
+        document.getElementById('presenterModal').classList.add('show');
+    }
+
+    function closePresenterModal() {
+        document.getElementById('presenterModal').classList.remove('show');
+    }
+
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+        const modal = document.getElementById('presenterModal');
+        if (event.target === modal) {
+            closePresenterModal();
+        }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closePresenterModal();
+        }
+    });
+</script>
 
 {% endblock content %}

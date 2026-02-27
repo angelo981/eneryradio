@@ -1,3 +1,38 @@
+        // Update current program display immediately
+        function updateNowPlaying() {
+            fetch('/api/current-program/')
+                .then(response => response.json())
+                .then(data => {
+                    let displayText = '';
+                    if (data.status === 'live') {
+                        displayText = `🔴 LIVE: ${data.title} - ${data.host || 'Energy Radio'}`;
+                    } else if (data.status === 'upcoming') {
+                        displayText = `⏭️ NEXT: ${data.title} at ${data.start_time}`;
+                    } else if (data.status === 'later') {
+                        displayText = `📻 ${data.title} at ${data.start_time}`;
+                    } else {
+                        displayText = 'Tune in to Energy Radio';
+                    }
+                    const element = document.getElementById('nowPlayin');
+                    if (element) {
+                        element.textContent = displayText;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching program:', error);
+                    const element = document.getElementById('nowPlayin');
+                    if (element) {
+                        element.textContent = 'Tune in to Energy Radio';
+                    }
+                });
+        }
+
+        // Update immediately on page load
+        updateNowPlaying();
+        
+        // Update every 60 seconds
+        setInterval(updateNowPlaying, 60000);
+
         $(document).ready(function(){
             // Hero taglines - rotate every 7 seconds
             const heroTaglines = [
@@ -77,26 +112,53 @@ $('.volume-slider').on('input', function () {
                 }
             });
 
-            // Dynamic Now Playing
-            const songs = [
-                "pom pom - Bruce Melodie",
-                "Ndakwemera - The Ben",
-                "Malaika - Ariel Wayz",
-                "Byambere - Meddy",
-                "Champion - Nel Ngabo"
-            ];
-            let currentSong = 0;
-            
-            // Update now playing on load
-            $('#nowPlaying').text(songs[0]);
-            
-            // Update every 10 seconds
-            setInterval(function() {
-                currentSong = (currentSong + 1) % songs.length;
-                $('#nowPlaying').fadeOut(300, function() {
-                    $(this).text(songs[currentSong]).fadeIn(300);
+            // Fetch Current Program from API
+            function updateNowPlayingProgram() {
+                console.log('updateNowPlayingProgram() called');
+                $.ajax({
+                    url: '/api/current-program/',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log('API Response:', data);
+                        const nowPlayingElement = $('#nowPlayin');
+                        let displayText = '';
+                        
+                        if (data.status === 'live') {
+                            displayText = `🔴 LIVE: ${data.title} - ${data.host || 'Energy Radio'}`;
+                        } else if (data.status === 'upcoming') {
+                            displayText = `⏭️ NEXT: ${data.title} at ${data.start_time}`;
+                        } else if (data.status === 'later') {
+                            displayText = `📻 ${data.title} at ${data.start_time}`;
+                        } else {
+                            displayText = 'Tune in to Energy Radio';
+                        }
+                        
+                        console.log('Display Text:', displayText);
+                        console.log('Current Text:', nowPlayingElement.text());
+                        
+                        if (nowPlayingElement.text() !== displayText) {
+                            nowPlayingElement.fadeOut(300, function() {
+                                $(this).text(displayText).fadeIn(300);
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.error('API Error:', error);
+                        // Fallback if API fails
+                        $('#nowPlayin').text('Tune in to Energy Radio');
+                    }
                 });
-            }, 10000);
+            }
+            
+            // Update now playing on page load (use slight delay to ensure DOM is ready)
+            console.log('Setting up now playing updates');
+            setTimeout(function() {
+                console.log('Calling updateNowPlayingProgram');
+                updateNowPlayingProgram();
+                // Update every 60 seconds (1 minute)
+                setInterval(updateNowPlayingProgram, 60000);
+            }, 500);
 
             // Programs Slider
             let currentProgramIndex = 0;
