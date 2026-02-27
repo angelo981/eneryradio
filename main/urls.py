@@ -16,6 +16,7 @@ urlpatterns = [
     path('community', views.community, name="community"),
     path('news', views.news, name="news"),
     path('community_detail/<int:pk>/', views.community_detail, name='community_detail'),
+    path('api/current-program/', views.get_current_program, name='get_current_program'),
 ]
 
 

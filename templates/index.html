@@ -30,7 +30,20 @@
 
                         <div class="now-playing-box">
                             <h6>NOW PLAYING</h6>
-                            <p id="nowPlayin" class="current-song">Loading...</p>
+                            {% if current_program %}
+                                {% if program_status == 'live' %}
+                                    <p class="current-song"><i class="fas fa-circle" style="color: red; animation: pulse 1s infinite;"></i> LIVE: {{ current_program.title }}</p>
+                                    <p style="font-size: 0.85rem; color: #a0a0a0;">Host: {{ current_program.host }}</p>
+                                {% elif program_status == 'upcoming' %}
+                                    <p class="current-song"><i class="fas fa-clock" style="color: #ffc107;"></i> NEXT: {{ current_program.title }}</p>
+                                    <p style="font-size: 0.85rem; color: #a0a0a0;">at {{ current_program.start_time }}</p>
+                                {% else %}
+                                    <p class="current-song"><i class="fas fa-radio" style="color: #54adde;"></i> {{ current_program.title }}</p>
+                                    <p style="font-size: 0.85rem; color: #a0a0a0;">{{ current_program.start_time }} - {{ current_program.end_time }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="current-song">Tune in to Energy Radio</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -270,6 +283,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="podcast-card">
                         {% if podcast.embed_video_url %}
+<<<<<<< HEAD
                         <div class="ratio ratio-16x9">
                             <iframe src="{{ podcast.embed_video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%;"> </iframe>
                         </div>
@@ -279,6 +293,15 @@
                         <div class="podcast-placeholder">
                             <i class="fas fa-podcast"></i>
                         </div>
+=======
+                                <iframe width="100%" height="280" src="{{ podcast.embed_video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        {% elif podcast.image %}
+                            <img src="{{ podcast.image.url }}" alt="{{ podcast.title }}" class="podcast-image-static">
+                        {% else %}
+                            <div class="podcast-placeholder">
+                                <i class="fas fa-podcast"></i>
+                            </div>
+>>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
                         {% endif %}
                         <h5>{{ podcast.title }}</h5>
                     </div>
