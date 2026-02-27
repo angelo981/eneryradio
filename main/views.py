@@ -12,11 +12,17 @@ def home(request):
     template_name="index.html"
     program = Program.objects.filter(day__day=date.today().isoweekday(), is_active=True).order_by('start_time')
     article = Article.objects.filter(status='published').order_by('-created_at')[:3]
-    podcast = PodcastShow.objects.filter(is_active=True).order_by('-created_at')[:4]
+    podcasts = PodcastShow.objects.filter(is_active=True).order_by('-created_at')[:4]
+     # Convert video URLs to embed format
+    for podcast in podcasts:
+        if podcast.video_url:
+            podcast.embed_video_url = get_youtube_embed_url(podcast.video_url)
+        else:
+            podcast.embed_video_url = None
     context = {
         "programs": program,
         "articles": article,
-        "podcasts": podcast,
+        "podcasts": podcasts,
     }
     return render(request, template_name, context)
 
@@ -90,27 +96,15 @@ def news(request):
     return render(request, template_name, context)
 def article_detail(request, pk):
     template_name = "article_detail.html"
-
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         content = request.POST['content']
-        ArticleComment.objects.create(
-            name=name,
-            email=email,
-            content=content,
-            article_id=pk
-        )
+        ArticleComment.objects.create(name=name, email=email, content=content, article_id=pk)
         messages.success(request, "Your comment has been submitted and is awaiting approval.")
         return redirect('article_detail', pk=pk)
-
     article = get_object_or_404(Article, pk=pk, status='published')
-
-    comment = ArticleComment.objects.filter(
-        article=article,
-        is_approved=True
-    ).order_by('-created_at')
-
+    comment = ArticleComment.objects.filter(article=article, is_approved=True).order_by('-created_at')
     related_articles = Article.objects.filter(
         category=article.category,
         status='published'
@@ -141,4 +135,3 @@ def community_detail(request, pk):
         "community": community,
     }
     return render(request, template_name, context)
-

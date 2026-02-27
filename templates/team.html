@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% load static %}
@@ -22,41 +23,56 @@
         </div>
 
         <div class="row">
-            {% for presenter in team %}        
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="presenter-card">
-                        <!-- Image -->
+            {% for presenter in team %}         
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="presenter-card">
+
+                    <!-- Image -->
+                    {% if presenter.image %}
                         <img src="{{ presenter.image.url }}" alt="{{ presenter.name }}" class="presenter-image">
-                        
-                        <!-- Microphone Icon -->
-                        <div class="icon">
-                            <i class="fas fa-microphone-alt"></i>
-                        </div>
-                        
-                        <!-- Name -->
+                    {% endif %}
+                    
+                    <!-- Microphone Icon -->
+                    <div class="icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    
+                    <!-- Content wrapper - THIS IS THE FIX -->
+                    <div class="presenter-content">
                         <h5>{{ presenter.name }}</h5>
+                        <!-- <p>{{ presenter.title }}</p> -->
                         
-                        <!-- ✅ SOCIAL MEDIA LINKS -->
+                       
+   <!-- View Profile Button -->
+                        <!-- <button type="button"
+                                class="btn btn-primary btn-sm mt-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#presenterModal{{ presenter.id }}">
+                            View Profile
+                        </button> -->
+
+
+                        <!-- SOCIAL MEDIA LINKS -->
                         <div class="presenter-social">
                             {% if presenter.whatsapp_url %}
-                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                             {% endif %}
                             
                             {% if presenter.instagram_url %}
-                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram">
+                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             {% endif %}
                         </div>
                     </div>
+
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>
 </section>
-
-
 
 {% endblock content %}

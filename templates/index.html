@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_head %}
 {% block content %}
+
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -26,54 +30,7 @@
 
                         <div class="now-playing-box">
                             <h6>NOW PLAYING</h6>
-                            <p id="nowPlayin">pom pom - Bruce Melodie</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide">
-                    <div class="hero-content">
-                        <h2>ENERGY RADIO</h2>
-                        <p class="tagline"><span id="typingText2" class="typing-text" data-text="Your home for music, entertainment, youth inspiration, and impactful communication across Rwanda."></span></p>
-                        
-                        <div class="hero-buttons">
-                            <a href="#" class="btn-hero btn-live">
-                                <i class="fas fa-circle"></i> Listen Live
-                            </a>
-                            <a href="#programs" class="btn-hero btn-programs">
-                                <i class="fas fa-radio"></i> View Programs
-                            </a>
-                            <a href="#advertise" class="btn-hero btn-advertise">
-                                <i class="fas fa-bullhorn"></i> Advertise With Us
-                            </a>
-                        </div>
-
-                        <div class="now-playing-box">
-                            <h6>NOW PLAYING</h6>
-                            <p id="nowPlayin">pom pom - Bruce Melodie</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide">
-                    <div class="hero-content">
-                        <h2>ENERGY RADIO</h2>
-                        <p class="tagline"><span id="typingText3" class="typing-text" data-text="Tune in. Engage. Feel the ENERGY."></span></p>
-                        
-                        <div class="hero-buttons">
-                            <a class="btn-hero btn-live" id="playBt">
-                                <i class="fas fa-circle"></i> Listen Live
-                            </a>
-                            <a href="#programs" class="btn-hero btn-programs">
-                                <i class="fas fa-radio"></i> View Programs
-                            </a>
-                            <a href="#advertise" class="btn-hero btn-advertise">
-                                <i class="fas fa-bullhorn"></i> Advertise With Us
-                            </a>
-                        </div>
-
-                        <div class="now-playing-box">
-                            <h6>NOW PLAYING</h6>
-                            <p id="nowPlayin">pom pom - Bruce Melodie</p>
-                            <p id="nowPlaying" class="current-song">Loading...</p>
+                            <p id="nowPlayin" class="current-song">Loading...</p>
                         </div>
                     </div>
                 </div>
@@ -312,24 +269,28 @@
                 {% for podcast in podcasts %}
                 <div class="col-md-3 col-sm-6">
                     <div class="podcast-card">
-                        {% if podcast.cover_image %}
-                            <img src="{{ podcast.image }}" alt="{{ podcast.title }}" class="podcast-image">
+                        {% if podcast.embed_video_url %}
+                        <div class="ratio ratio-16x9">
+                            <iframe src="{{ podcast.embed_video_url }}" title="{{ podcast.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%;"> </iframe>
+                        </div>
+                        {% elif podcast.image %}
+                        <img src="{{ podcast.image.url }}" alt="{{ podcast.title }}" class="podcast-image-static" style="width: 100%; height: 100%;">
                         {% else %}
-                            <i class="{{ podcast.category.icon }}"></i>
+                        <div class="podcast-placeholder">
+                            <i class="fas fa-podcast"></i>
+                        </div>
                         {% endif %}
                         <h5>{{ podcast.title }}</h5>
-                        {% comment %} <p>{{ podcast.description|truncatewords:20 }}</p> {% endcomment %}
                     </div>
                 </div>
                 {% endfor %}
-                
             </div>
 
             <div class="text-center mt-4">
               <a href="{% url 'podcast' %}" class="btn-read-more"><i class="fas fa-headphones"></i> Browse All Podcasts</a>
             </div>
-       
-    </section>
+        </div>
+</section>
 
     <!-- Advertise Section -->
     <section id="advertise" class="section-padding" style="background: rgba(0, 0, 0, 0.3);">

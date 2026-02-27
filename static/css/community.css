@@ -1,11 +1,12 @@
   /* Hero Section */
         .hero-impact {
             position: relative;
-            padding: 160px 0 100px;
+            padding: 70px 0 60px;
             margin-top: 70px;
             overflow: hidden;
             z-index: 1;
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 31, 58, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+            border: 2px solid #54adde;
         }
 
         .hero-impact::before {
@@ -111,107 +112,112 @@
             color: var(--text-light);
             font-weight: 600;
         }
+/* Campaign Card */
+.campaign-card {
+    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 2px solid #54adde;
+    border-radius: 35px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
 
-        /* Campaign Cards */
-        .campaign-card {
-            background: rgba(26, 31, 58, 0.6);
-            border: 1px solid rgba(84, 173, 222, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
+.campaign-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(84, 173, 222, 0.3);
+}
 
-        .campaign-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(84, 173, 222, 0.3);
-        }
+/* 🔼 IMAGE YONGEREWE SIZE */
+.campaign-image {
+    width: 100%;
+    height: 240px; /* was 220px */
+    overflow: hidden;
+}
 
-        .campaign-image {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
+.campaign-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .campaign-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
+/* CONTENT */
+.campaign-content {
+    padding: 12px; /* yagabanutse gato */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
-        .campaign-card:hover .campaign-image img {
-            transform: scale(1.1);
-        }
+/* TITLE - MAX 2 LINES */
+.campaign-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
 
-        .campaign-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--secondary);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            z-index: 2;
-        }
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   /* MAX 2 LINES */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
-        .campaign-content {
-            padding: 25px;
-        }
+/* 🔽 DESCRIPTION YAGABANYIJWE */
+.campaign-description {
+    color: var(--text-muted);
+    font-size: 0.8rem; /* smaller text */
+    line-height: 1.4;
 
-        .campaign-category {
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* was 3 → now 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 
-        .campaign-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: white;
-        }
+    margin-bottom: 8px;
+}
 
-        .campaign-description {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+/* META AT BOTTOM */
+.campaign-meta {
+    margin-top: auto; /* pushes it down */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .campaign-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(84, 173, 222, 0.2);
-        }
+.campaign-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+/* META */
+.campaign-meta {
+    margin-top: auto; /* pushes meta to bottom */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(84, 173, 222, 0.2);
+}
 
-        .campaign-impact {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+.campaign-impact {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
 
-        .campaign-link {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
+.campaign-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
 
-        .campaign-link:hover {
-            color: var(--secondary);
-            text-decoration: none;
-        }
+.campaign-link:hover {
+    color: var(--secondary);
+}
 
 /* ===============================
    PARTNERS / LOGOS GRID

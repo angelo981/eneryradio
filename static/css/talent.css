@@ -170,7 +170,7 @@
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
+    height: 80%;
     object-fit: cover;
     transition: transform 0.4s;
 }
@@ -201,15 +201,15 @@
     font-size: 0.95rem;
 }
 
-/* Program Cards */
+/* Program Cards - Compact Version */
 .program-card {
     background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
     border: 2px solid #54adde;
-    border-radius: 25px;
-    padding: 30px 20px;
-    margin-bottom: 30px;
+    border-radius: 20px; /* slightly smaller radius */
+    padding: 20px 15px; /* reduced padding */
+    margin-bottom: 20px; /* smaller margin */
     transition: all 0.4s;
-    height: 100%;
+    height: auto; /* allows flexible height based on content */
     position: relative;
     overflow: hidden;
 }
@@ -220,7 +220,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 6px;
+    height: 5px; /* smaller top bar */
     background: linear-gradient(90deg, #54adde, white, #8b5cf6);
     transform: scaleX(0);
     transition: transform 0.4s;
@@ -232,67 +232,45 @@
 
 .program-card:hover {
     border-color: #54adde;
-    transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(84, 173, 222, 0.4);
+    transform: translateY(-10px); /* less hover lift */
+    box-shadow: 0 15px 30px rgba(84, 173, 222, 0.3); /* smaller shadow */
 }
 
 .program-card .icon {
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, #54adde, #8b5cf6);
-    border-radius: 23px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    font-size: 2.8rem;
-    transition: all 0.4s;
-    box-shadow: 0 10px 25px rgba(84, 173, 222, 0.3);
+    width: 70px; /* smaller icon */
+    height: 70px;
+    border-radius: 18px;
+    font-size: 2rem; /* smaller icon font */
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(84, 173, 222, 0.3);
 }
 
 .program-card:hover .icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.05) rotate(3deg); /* smaller hover effect */
 }
 
 .program-card h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* smaller heading */
+    margin-bottom: 15px;
     color: #54adde;
 }
 
 .program-card p {
-    font-size: 1.15rem;
-    line-height: 1.9;
+    font-size: 1rem; /* smaller paragraph */
+    line-height: 1.6; /* tighter line spacing */
     color: #d1d5db;
-    margin-bottom: 25px;
-}
-
-.program-card ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .program-card ul li {
-    color: #d1d5db;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.05rem;
-}
-
-.program-card ul li:last-child {
-    border-bottom: none;
+    font-size: 0.95rem; /* smaller list text */
+    padding: 8px 0; /* tighter padding */
+    gap: 10px;
 }
 
 .program-card ul li i {
-    color: #54adde;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
-
 /* Benefits Section */
 .benefits-box {
     background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);

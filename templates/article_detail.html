@@ -1,5 +1,4 @@
-
-   {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
 
@@ -8,125 +7,123 @@
 {% endblock extra_head %}
 
 {% block content %}
-   <!-- Main Content -->
     <div class="container-fluid">
-        <div class="main-grid">
-            <!-- Main Article -->
-            <div class="article-container">
-                <!-- Article Image -->
-                <div class="article-image">
-                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
-                </div>
+        <div class="article-wrapper">
 
+            <!-- Article Title -->
+            <h3 class="article-title">{{ article.title }}</h3>
                 <!-- Article Meta -->
-                <div class="article-meta">
-                    <div class="meta-info">
-                        <div class="meta-item">
-                            <i class="fas fa-calendar"></i>
-                            {{ article.date|date:"F d, Y" }}
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-clock"></i>
-                            {{ community.created_at|time:"H:i" }}
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-user"></i>
-                            By <span class="author-name">{{ article.author.first_name }} {{ article.author.last_name }}</span>
-                        </div>
+            <div class="article-met" >
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        {{ article.created_at|date:"F d, Y" }}
                     </div>
-                    <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank" class="social-btn" title="Share on Twitter">
-                            <i class="fab fa-x"></i>
-                        </a>
-                        <a href="https://wa.me/?text={{ article.title }}%20{{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                       
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        {{ article.created_at|time:"H:i" }}
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user"></i>
+                        By <span class="author-name">{{ article.author.first_name }} {{ article.author.last_name }}</span>
                     </div>
                 </div>
-
-                <!-- Article Title -->
-                <h1 class="article-title">{{ article.title }}</h1>
-
-                <!-- Article Content -->
-                <div class="article-content">
-                    <p>{{ article.content|safe }}</p>
-                </div>
-
-                <!-- Comments Section -->
-                <div class="comments-section">
-                    {% if comments %}
-                        <h2 class="comments-title">Reader Comments</h2>
-                        {% for comment in comments %}
-
-                        <!-- Comments -->
-                        <div class="comment">
-                            <span class="comment-author">{{ comment.name }}</span>
-                            <span class="comment-time">{{ comment.created_at|date:"F d, Y" }}</span>
-                            <p class="comment-text">{{ comment.content }}</p>
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-
-                    <!-- Comment Form -->
-                    <div class="comment-form">
-                        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: var(--text-light);">Leave a Comment</h3>
-                        <form method="post" action="{% url 'article_detail' pk=article.pk %}">
-                            {% csrf_token %}
-                            <input type="text" placeholder="Your Name" name="name" required>
-                            <input type="email" placeholder="Your Email" name="email" required>
-                            <textarea rows="4" placeholder="Share your thoughts..." name="content" required></textarea>
-                            <button type="submit" class="submit-btn">Post Comment</button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Related Stories -->
-                <div class="related-stories">
-                    <h2 class="related-title">INKURU BIJYANYE</h2>
-
-                    {% for related in related_articles %}
-                      <a href="{% url 'article_detail' pk=related.pk %}" class="related-story">
-                          <div class="related-story-title">{{ related.title }}</div>
-                          <!-- <div class="related-story-meta">
-                              <i class="fas fa-calendar"></i> {{ related.date|date:"F d, Y" }} • By {{ related.written_by }}
-                          </div> -->
-                      </a>
-                    {% endfor %}
-
+                <div class="social-share">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank" class="social-btn" title="Share on Twitter">
+                        <i class="fab fa-x"></i>
+                    </a>
+                    <a href="https://wa.me/?text={{ article.title }}%20{{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Sidebar - Trending News -->
-     <aside class="sidebar">
-    <div class="trending-box">
-        <div class="trending-header">
-            <i class="fas fa-fire"></i> Inkuru nyamukuru
-        </div>
-        {% for trending in trending_articles %}
-        <div class="trending-item-card">
-            <a href="{% url 'article_detail' pk=trending.pk %}" class="trending-link">
-                <div class="trending-card-image">
+
+            <!-- Article Image -->
+            <div class="article-image">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+                <p>{{ article.content|safe }}</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                {% if comments %}
+                    <h2 class="comments-title">Reader Comments</h2>
+                    {% for comment in comments %}
+                    <div class="comment">
+                        <span class="comment-author">{{ comment.name }}</span>
+                        <span class="comment-time">{{ comment.created_at|date:"F d, Y" }}</span>
+                        <p class="comment-text">{{ comment.content }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Comment Form -->
+                <div class="comment-form">
+                    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: var(--text-light);">Leave a Comment</h3>
+                    <form method="post" action="{% url 'article_detail' pk=article.pk %}">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Your Name" name="name" required>
+                        <input type="email" placeholder="Your Email" name="email" required>
+                        <textarea rows="4" placeholder="Share your thoughts..." name="content" required></textarea>
+                        <button type="submit" class="submit-btn">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+
+         <!-- Trending + Related Side by Side -->
+<div class="bottom-two-columns">
+
+    <!-- Trending News -->
+    <div class="bottom-section">
+        <h2 class="section-title"><i class="fas fa-fire"></i> Trending News</h2>
+        <div class="bottom-grid">
+            {% for trending in trending_articles %}
+            <a href="{% url 'article_detail' pk=trending.pk %}" class="bottom-card">
+                <div class="bottom-card-image">
                     {% if trending.image %}
                         <img src="{{ trending.image.url }}" alt="{{ trending.title }}">
                     {% else %}
                         <img src="{% static 'images/default-news.jpg' %}" alt="Default">
                     {% endif %}
                 </div>
-                <div class="trending-card-content">
-                    <h3 class="trending-title">{{ trending.title }}</h3>
-                    <div class="trending-meta">
-                        <!-- <span class="views">{{ trending.views }} reads</span> -->
-                    </div>
+                <div class="bottom-card-content">
+                    <h3 class="bottom-card-title">{{ trending.title }}</h3>
+                    <!-- <span class="bottom-card-date"><i class="fas fa-calendar"></i> {{ trending.date|date:"F d, Y" }}</span> -->
                 </div>
             </a>
-        </div>
-        {% endfor %}
-    </div>
-</aside>
+            {% endfor %}
         </div>
     </div>
+
+    <!-- Related Stories -->
+    <div class="bottom-section">
+        <h2 class="section-title"><i class="fas fa-newspaper"></i> Related Stories</h2>
+        <div class="bottom-grid">
+            {% for related in related_articles %}
+            <a href="{% url 'article_detail' pk=related.pk %}" class="bottom-card">
+                <div class="bottom-card-image">
+                    {% if related.image %}
+                        <img src="{{ related.image.url }}" alt="{{ related.title }}">
+                    {% else %}
+                        <img src="{% static 'images/default-news.jpg' %}" alt="Default">
+                    {% endif %}
+                </div>
+                <div class="bottom-card-content">
+                    <h3 class="bottom-card-title">{{ related.title }}</h3>
+                    <!-- <span class="bottom-card-date"><i class="fas fa-calendar"></i> {{ related.date|date:"F d, Y" }}</span> -->
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
 {% endblock content %}

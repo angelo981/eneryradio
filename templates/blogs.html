@@ -52,171 +52,38 @@
 
             <div class="row" id="blogsContainer">
                 <!-- Blog Card 1 -->
-                 
-                <div class="col-lg-4 col-md-6 blog-item" data-category="community">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="{% static 'images/energy.jpeg' %}" alt="blog" class="blog-image">
-                            <!-- <div class="read-overlay">s
-                                <i class="fas fa-arrow-right"></i>
-                            </div> -->
-                            <!-- <span class="blog-badge">FEATURED</span> -->
+          {% for blog in blogs %}
+        <div class="col-lg-4 col-md-6 blog-item">
+           <div class="blog-card" style="width: 350px; height: 400px;">
+                <div class="blog-image" style="width: 100%; height: 200px;">
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+                    {% else %}
+                        <img src="/static/images/default.jpg" alt="No image" class="blog-image">
+                    {% endif %}
+                </div>
+                <div class="blogs-content">
+                    <h3 class="blogs-title">{{ blog.title }}</h3>
+                    <p class="blogs-description">{{ blog.description }}</p>
+
+                    <div class="blogs-meta">
+                        <div class="blogs-impact">
+                            <i class="fas fa-calendar-alt"></i> {{ blog.created_at|date:"M d, Y" }}
                         </div>
-                        <div class="blog-content">
-                            <!-- <div class="blog-category">
-                                <i class="fas fa-users"></i> Community
-                            </div> -->
-                            <h3 class="blog-title">Rwanda’s Creative Economy: Africa’s Next Powerhouse</h3>
-                            <p class="blog-excerpt">Rwanda’s creative economy is emerging as one of the most dynamic in Africa, driven by strong national vision...</p>
-                            <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i> december 02, 2025
-                                </div>
-                                <!-- <div class="blog-author">
-                                    <i class="fas fa-user"></i> 5 min read
-                                </div> -->
-                            </div>
-                        </div>
+                        {% if blog.content %}
+                             <a href="{% url 'blogs_detail' blog.pk %}" class="btn-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        {% endif %}
                     </div>
                 </div>
-
-                <!-- Blog Card 2 -->
-                <div class="col-lg-4 col-md-6 blog-item" data-category="music">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                             <img src="{% static 'images/journalist.jpg' %}" alt="blog" class="blog-image">    
-                            <div class="read-overlay">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <!-- <div class="blog-category">
-                                <i class="fas fa-music"></i> Music
-                            </div> -->
-                            <h3 class="blog-title">The Rise of Youth Talent in Rwanda </h3>
-                            <p class="blog-excerpt">Discover how Energy Radio and TOP5SAI are shaping Rwanda’s next generation of creatives through talent development...</p>
-                            <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>  december 02, 2025
-                                </div>
-                                <!-- <div class="blog-author">
-                                    <i class="fas fa-user"></i> 4 min read
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Card 3 -->
-                <div class="col-lg-4 col-md-6 blog-item" data-category="event">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                        <img src="{% static 'images/hero.jpg' %}" alt="blog" class="blog-image">      
-                            <div class="read-overlay">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <!-- <div class="blog-category">
-                                <i class="fas fa-calendar"></i> Events
-                            </div> -->
-                             <h3 class="blog-title">Rwanda MICE & Event Economy</h3>
-                            <p class="blog-excerpt">Rwanda’s MICE sector has become a catalyst for national economic transformation, fueling job creation...</p>
-                            <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i> december 02, 2025
-                                </div>
-                                <!-- <div class="blog-author">
-                                    <i class="fas fa-user"></i> 6 min read
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Card 4 -->
-                <div class="col-lg-4 col-md-6 blog-item" data-category="music">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                             <img src="{% static 'images/journalist.jpg' %}" alt="blog" class="blog-image">    
-                            <div class="read-overlay">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <!-- <div class="blog-category">
-                                <i class="fas fa-music"></i> Music
-                            </div> -->
-                            <h3 class="blog-title">The Rise of Youth Talent in Rwanda </h3>
-                            <p class="blog-excerpt">Discover how Energy Radio and TOP5SAI are shaping Rwanda’s next generation of creatives through talent development...</p>
-                            <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>  december 02, 2025
-                                </div>
-                                <!-- <div class="blog-author">
-                                    <i class="fas fa-user"></i> 4 min read
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Card 5 -->
-                                    <div class="col-lg-4 col-md-6 blog-item" data-category="community">
-                        <div class="blog-card">
-                            <div class="blog-image">
-                                <img src="{% static 'images/community.jpg' %}" alt="blog" class="blog-image">   
-                                <div class="read-overlay">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <!-- <div class="blog-category">
-                                    <i class="fas fa-users"></i> Community
-                                </div> -->
-                                <h3 class="blog-title">Digital Transformation in Rwanda’s Media Industry</h3>
-                                <p class="blog-excerpt">Explore how Rwandan radio, TV, and digital platforms are transforming broadcasting through hybrid media and innovative technologies...</p>
-                                <div class="blog-meta">
-                                    <div class="blog-date">
-                                        <i class="fas fa-calendar-alt"></i> december 02, 2025
-                                    </div>
-                                    <!-- <div class="blog-author">
-                                        <i class="fas fa-user"></i> 7 min read
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Card 6
-                    <div class="col-lg-4 col-md-6 blog-item" data-category="music">
-                        <div class="blog-card">
-                            <div class="blog-image">
-                                <img src="{% static 'images/iwacu.jpg' %}" alt="blog" class="blog-image">
-                                <div class="read-overlay">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-category">
-                                    <i class="fas fa-music"></i> Music
-                                </div> -->
-                                <!-- <h3 class="blog-title">Inside the Studio: Artists on the Rise</h3>
-                                <p class="blog-excerpt">Behind-the-scenes with producers and rising artists shaping Rwanda's contemporary sound...</p>
-                                <div class="blog-meta">
-                                    <div class="blog-date">
-                                        <i class="fas fa-calendar-alt"></i> december 02, 2025
-                                    </div>
-                                     <div class="blog-author">
-                                        <i class="fas fa-user"></i> 5 min read
-                                    </div> -->
-                                <!-- </div>
-                            </div>
-                        </div> -->
-                    <!-- </div> --> 
-
-                    <!-- End Blog Grid Items -->
-                <!-- </div> -->
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No blogs found.</p>
+        </div>
+    {% endfor %}
+</div>
+    </section>
 
                 <!-- Newsletter / CTA -->
                 <div class="newsletter-section">

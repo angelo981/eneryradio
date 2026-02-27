@@ -1,6 +1,6 @@
 .hero-blog {
     position: relative;
-    padding: 100px 0 60px;
+    padding: 80px 0 40px;
     margin-top: 50px;
     overflow: hidden;
     z-index: 1;
@@ -12,7 +12,7 @@
     top: -50%;
     right: -20%;
     width: 800px;
-    height: 800px;
+    height: 600px;
     background: radial-gradient(circle, rgba(84, 173, 222, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     animation: pulse 8s ease-in-out infinite;
@@ -148,27 +148,33 @@
     border-radius: 20px;
     padding: 0;
     margin-bottom: 30px;
-    overflow: hidden;
+    overflow: hidden; /* important to hide extra content */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
     backdrop-filter: blur(10px);
-}
 
-.blog-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(84, 173, 222, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
-    border: 2px solid #54adde;
-    opacity: 0;
-    transition: opacity 0.4s;
-    z-index: 0;
+    max-width: 350px; /* card width fixed */
+    height: 450px; /* FIXED card height */
+}
+.blogs-content {
+    padding: 15px;
+    height: 170px; /* fixed content height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
 }
 
+/* Truncate description/excerpt */
+ .blogs-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .blog-card:hover {
     transform: translateY(-10px);
     border-color: #54adde;
@@ -261,7 +267,7 @@
 
 .blog-title {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     margin-bottom: 12px;
     color: white;
     line-height: 1.3;
@@ -350,7 +356,7 @@
 
 .newsletter-title {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     margin-bottom: 15px;
     color: white;
     position: relative;

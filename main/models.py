@@ -174,13 +174,10 @@ class PodcastShow(models.Model):
     ]
    
     title = models.CharField(max_length=200, verbose_name="Show Title")
-    slug = models.SlugField(max_length=250, unique=True, blank=True, verbose_name="URL Slug")
     category = models.ForeignKey(PodcastCategory, on_delete=models.SET_NULL, null=True, related_name='shows', verbose_name="Category")
     description = models.TextField(verbose_name="Description")
-    image = models.ImageField(upload_to='PodcastShow/', blank=True, null=True, verbose_name="PodcastShow Image")
     video_url = models.URLField(blank=True, null=True, verbose_name="Video URL", help_text="Link to YouTube/Vimeo or embedded video")
     audio_url = models.URLField(verbose_name="Audio File URL", help_text="Link to MP3/audio file")
-    published_date = models.DateTimeField(verbose_name="Published Date")
     guest = models.CharField(max_length=200, blank=True, null=True, verbose_name="Guest(s)")
     host = models.CharField(max_length=100, blank=True, null=True, verbose_name="Host")
     is_active = models.BooleanField(default=True, verbose_name="Active")
@@ -194,8 +191,6 @@ class PodcastShow(models.Model):
         ordering = ['order', '-created_at']
    
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
         super().save(*args, **kwargs)
     
     @property
@@ -214,9 +209,7 @@ class Blog(models.Model):
     Summary = models.TextField(verbose_name="Summary")
     content = models.TextField(blank=True, null=True, verbose_name="Content")
     image = models.ImageField(upload_to='blogs/', blank=True, null=True, verbose_name="Image")
-    image_url = models.CharField(max_length=500, blank=True, null=True, verbose_name="URL Image")
     date = models.DateField(default=timezone.now, verbose_name="Publication Date")
-    link = models.CharField(max_length=200, verbose_name="Link to Article")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
    
@@ -254,7 +247,6 @@ class Team(models.Model):
     title = models.CharField(max_length=200, verbose_name="Title/Function")
     description = models.TextField(blank=True, null=True, verbose_name="Description")
     image = models.ImageField(upload_to='teams/', blank=True, null=True, verbose_name="Photo")
-    image_url = models.CharField(max_length=500, blank=True, null=True, verbose_name="URL Image or Path")
     whatsapp_url = models.URLField(blank=True, null=True, verbose_name="WhatsApp")
     instagram_url = models.URLField(blank=True, null=True, verbose_name="Instagram")
     order = models.IntegerField(default=0, verbose_name="Order of Display")
@@ -303,10 +295,9 @@ class Community(models.Model):
     ]
     
     title = models.CharField(max_length=200, verbose_name="Cammunity Title")
-    description = models.TextField(verbose_name="Cammunity Description")
+    description = models.TextField(verbose_name="SubContent")
+    content = models.TextField(blank=True, null=True, verbose_name="Content")
     image = models.ImageField(upload_to='Cammunity/', verbose_name="Cammunity Image")
-    content = models.TextField(blank=True, null=True, verbose_name="Detailed Content")
-    video = models.URLField(blank=True, null=True, verbose_name="Video URL (YouTube/Vimeo)")
     is_active = models.BooleanField(default=True, verbose_name="Active")
     order = models.IntegerField(default=0, verbose_name="Order of Display")
     created_at = models.DateTimeField(auto_now_add=True)
