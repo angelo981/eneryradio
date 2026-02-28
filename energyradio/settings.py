@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'energyradio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG is True:
+if DEBUG is False:
     
     # # TODO Attendance Server
     DATABASES = {
