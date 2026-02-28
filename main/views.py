@@ -83,10 +83,8 @@ def home(request):
     program = Program.objects.filter(day__day=date.today().isoweekday(), is_active=True).order_by('start_time')
     article = Article.objects.filter(status='published').order_by('-created_at')[:3]
     podcasts = PodcastShow.objects.filter(is_active=True).order_by('-created_at')[:4]
-<<<<<<< HEAD
+
      # Convert video URLs to embed format
-=======
-    
     # Get current program
     current_time = datetime.now().time()
     current_program = None
@@ -112,7 +110,7 @@ def home(request):
                 program_status = 'later'
     
     # Convert video URLs to embed format
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
+
     for podcast in podcasts:
         if podcast.video_url:
             podcast.embed_video_url = get_youtube_embed_url(podcast.video_url)
@@ -122,11 +120,9 @@ def home(request):
         "programs": program,
         "articles": article,
         "podcasts": podcasts,
-<<<<<<< HEAD
-=======
         "current_program": current_program,
         "program_status": program_status,
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
+
     }
     return render(request, template_name, context)
 

@@ -97,10 +97,30 @@ $('#playBtn').click(function () {
         window.isPlaying = false;
     }
 });
+// Volume slider
 $('.volume-slider').on('input', function () {
     audio.volume = $(this).val() / 100;
+
+    // Optional: auto mute if slider is 0
+    if (audio.volume == 0) {
+        audio.muted = true;
+        $('#muteBtn').removeClass('fa-volume-up').addClass('fa-volume-mute');
+    } else {
+        audio.muted = false;
+        $('#muteBtn').removeClass('fa-volume-mute').addClass('fa-volume-up');
+    }
 });
 
+// 🔊 Mute / Unmute button
+$('#muteBtn').click(function () {
+    audio.muted = !audio.muted;
+
+    if (audio.muted) {
+        $(this).removeClass('fa-volume-up').addClass('fa-volume-mute');
+    } else {
+        $(this).removeClass('fa-volume-mute').addClass('fa-volume-up');
+    }
+});
             // Smooth scrolling
             $('a[href^="#"]').on('click', function(e) {
                 e.preventDefault();
@@ -112,65 +132,6 @@ $('.volume-slider').on('input', function () {
                 }
             });
 
-<<<<<<< HEAD
-            // Dynamic Now Playing
-            const songs = [
-                "pom pom - Bruce Melodie",
-                "Naremenya - The Ben",
-                "Bad - Ariel Wayz",
-                "Slowly - Meddy",
-                "Nzahinduka - Nel Ngabo"
-            ];
-            let currentSong = 0;
-            
-            // Update now playing on load
-            $('#nowPlaying').text(songs[0]);
-            
-            // Update every 10 seconds
-            setInterval(function() {
-                currentSong = (currentSong + 1) % songs.length;
-                $('#nowPlaying').fadeOut(300, function() {
-                    $(this).text(songs[currentSong]).fadeIn(300);
-=======
-            // Fetch Current Program from API
-            function updateNowPlayingProgram() {
-                console.log('updateNowPlayingProgram() called');
-                $.ajax({
-                    url: '/api/current-program/',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        console.log('API Response:', data);
-                        const nowPlayingElement = $('#nowPlayin');
-                        let displayText = '';
-                        
-                        if (data.status === 'live') {
-                            displayText = `🔴 LIVE: ${data.title} - ${data.host || 'Energy Radio'}`;
-                        } else if (data.status === 'upcoming') {
-                            displayText = `⏭️ NEXT: ${data.title} at ${data.start_time}`;
-                        } else if (data.status === 'later') {
-                            displayText = `📻 ${data.title} at ${data.start_time}`;
-                        } else {
-                            displayText = 'Tune in to Energy Radio';
-                        }
-                        
-                        console.log('Display Text:', displayText);
-                        console.log('Current Text:', nowPlayingElement.text());
-                        
-                        if (nowPlayingElement.text() !== displayText) {
-                            nowPlayingElement.fadeOut(300, function() {
-                                $(this).text(displayText).fadeIn(300);
-                            });
-                        }
-                    },
-                    error: function(error) {
-                        console.error('API Error:', error);
-                        // Fallback if API fails
-                        $('#nowPlayin').text('Tune in to Energy Radio');
-                    }
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
-                });
-            }
             
             // Update now playing on page load (use slight delay to ensure DOM is ready)
             console.log('Setting up now playing updates');

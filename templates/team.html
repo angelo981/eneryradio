@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% load static %}
@@ -163,6 +162,64 @@
         filter: brightness(0.8);
     }
 
+    /* Presenter content - name and social links together */
+    .presenter-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        z-index: 3;
+    }
+
+    .presenter-content h5 {
+        margin: 0;
+    }
+
+    /* Style social links on cards to match modal */
+    .presenter-social {
+        display: flex !important;
+        gap: 15px !important;
+        margin: 0 !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 3 !important;
+    }
+
+    .presenter-social .social-link {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 45px !important;
+        height: 45px !important;
+        border-radius: 50% !important;
+        background-color: #54adde !important;
+        color: #fff !important;
+        font-size: 1.3rem !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .presenter-social .social-link:hover {
+        background-color: #fff !important;
+        color: #54adde !important;
+        transform: scale(1.1) !important;
+    }
+
+    .presenter-social .whatsapp:hover {
+        background-color: #25d366 !important;
+        color: #fff !important;
+    }
+
+    .presenter-social .instagram:hover {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+        color: #fff !important;
+    }
+
     @media (max-width: 768px) {
         .presenter-modal-header {
             flex-direction: column;
@@ -204,76 +261,43 @@
         </div>
 
         <div class="row">
-<<<<<<< HEAD
-            {% for presenter in team %}         
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="presenter-card">
-
-                    <!-- Image -->
-                    {% if presenter.image %}
-=======
             {% for presenter in team %}        
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="presenter-card" onclick="openPresenterModal({{ presenter.id }})">
                         <!-- Image -->
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
                         <img src="{{ presenter.image.url }}" alt="{{ presenter.name }}" class="presenter-image">
-                    {% endif %}
-                    
-                    <!-- Microphone Icon -->
-                    <div class="icon">
-                        <i class="fas fa-microphone-alt"></i>
-                    </div>
-                    
-                    <!-- Content wrapper - THIS IS THE FIX -->
-                    <div class="presenter-content">
-                        <h5>{{ presenter.name }}</h5>
-                        <!-- <p>{{ presenter.title }}</p> -->
                         
-                       
-   <!-- View Profile Button -->
-                        <!-- <button type="button"
-                                class="btn btn-primary btn-sm mt-2"
-                                data-bs-toggle="modal"
-                                data-bs-target="#presenterModal{{ presenter.id }}">
-                            View Profile
-                        </button> -->
-
-
-                        <!-- SOCIAL MEDIA LINKS -->
-                        <div class="presenter-social">
-                            {% if presenter.whatsapp_url %}
-<<<<<<< HEAD
-                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp">
-=======
-                                <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp" onclick="event.stopPropagation();">
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            {% endif %}
+                        <!-- Microphone Icon -->
+                        <div class="icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        
+                        <!-- Name & Social Links -->
+                        <div class="presenter-content">
+                            <h5>{{ presenter.name }}</h5>
                             
-                            {% if presenter.instagram_url %}
-<<<<<<< HEAD
-                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram">
-=======
-                                <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram" onclick="event.stopPropagation();">
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            {% endif %}
+                            <!-- ✅ SOCIAL MEDIA LINKS -->
+                            <div class="presenter-social">
+                                {% if presenter.whatsapp_url %}
+                                    <a href="{{ presenter.whatsapp_url }}" target="_blank" class="social-link whatsapp" title="WhatsApp" onclick="event.stopPropagation();">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                {% endif %}
+                                
+                                {% if presenter.instagram_url %}
+                                    <a href="{{ presenter.instagram_url }}" target="_blank" class="social-link instagram" title="Instagram" onclick="event.stopPropagation();">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<<<<<<< HEAD
-{% endblock content %}
-=======
 <!-- Presenter Modal -->
 <div id="presenterModal" class="presenter-modal">
     <div class="presenter-modal-content">
@@ -322,9 +346,9 @@
 
         // Build social links
         let socialHtml = '';
-        if (data.whatsapp) {
-            socialHtml += `<a href="${data.whatsapp}" target="_blank" class="whatsapp" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
+       if (data.whatsapp) {
+              socialHtml += `<a href="${data.whatsapp}" target="_blank" rel="noopener noreferrer" class="whatsapp">
+                             <i class="fab fa-whatsapp"></i>
                         </a>`;
         }
         if (data.instagram) {
@@ -359,4 +383,3 @@
 </script>
 
 {% endblock content %}
->>>>>>> 0d56d3a26ac1c81121732993d2f224fc76ae8376

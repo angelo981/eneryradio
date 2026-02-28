@@ -490,6 +490,8 @@ transform: translateY(-5px);
 color: #54adde;
 font-weight: bold;
 margin-bottom: 10px;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
 }
 
 .program-card .time {
@@ -947,7 +949,7 @@ gap: 15px;
 flex-wrap: wrap;
 }
 .social-links a{
-    color: #ffffff;
+    color: #faf4f4;
 }
 .social-link {
 width: 40px;
@@ -965,7 +967,7 @@ text-decoration: none;
 
 .social-link:hover {
 background: #54adde;
-color: white;
+color: rgb(255, 255, 255);
 transform: translateY(-3px);
 }
 
