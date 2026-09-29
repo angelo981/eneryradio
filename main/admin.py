@@ -43,11 +43,49 @@ class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'subject', 'created_at')
     search_fields = ('name', 'email', 'subject')
 
-admin.site.register(Blog)
+@admin.register(Blog)
 class BlogAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'created_at')
-    search_fields = ('title', 'content')
+    list_display = ('description_preview', 'location', 'date', 'image', 'created_at')
+    list_filter = ('date',)
+    search_fields = ('Summary', 'location', 'content')
+    date_hierarchy = 'date'
+    ordering = ('-date', '-created_at')
+    list_per_page = 25
+    readonly_fields = ('created_at', 'updated_at')
+    exclude = ('title',)
+    fieldsets = (
+        ('Story details', {
+            'fields': ('Summary', 'location', 'date'),
+        }),
+        ('Photo', {
+            'fields': ('image',),
+        }),
+        ('Full story', {
+            'fields': ('content',),
+            'classes': ('collapse',),
+        }),
+        ('Record details', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
     summernote_fields = ('content',)
+
+    @admin.display(description='Description')
+    def description_preview(self, obj):
+        return obj.Summary[:120]
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        formfield = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == 'Summary' and formfield:
+            formfield.label = 'Description'
+        return formfield
+
+    def save_model(self, request, obj, form, change):
+        if not obj.title:
+            obj.title = obj.Summary[:200]
+        super().save_model(request, obj, form, change)
+
     class Media:
         css = {
             'all': ('css/summernote_admin.css',)
@@ -71,12 +109,32 @@ class PodcastShowAdmin(admin.ModelAdmin):
     list_filter = ('category', 'created_at')
     search_fields = ('title', 'description')
 
-admin.site.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'is_active', 'order')
-    list_editable = ('is_active', 'order')
+    list_display = ('title', 'is_active', 'position')
+    list_editable = ('is_active', 'position')
     search_fields = ('title',)
 
-admin.site.register(Community)
-class CommunityAdmin(admin.ModelAdmin):
-    list_display = ('title', 'summary')
+admin.site.register(Advertisement, AdvertisementAdmin)
+
+@admin.register(Community)
+class CommunityAdmin(SummernoteModelAdmin):
+    list_display = ('title', 'is_active', 'order', 'created_at')
+    list_filter = ('is_active',)
+    search_fields = ('title', 'content')
+    ordering = ('order', 'title')
+    list_editable = ('is_active', 'order')
+    readonly_fields = ('created_at', 'updated_at')
+    exclude = ('description',)
+    fieldsets = (
+        ('Community details', {
+            'fields': ('title', 'content', 'image'),
+        }),
+        ('Display settings', {
+            'fields': ('is_active', 'order'),
+        }),
+        ('Record details', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+    summernote_fields = ('content',)

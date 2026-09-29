@@ -33,7 +33,7 @@
                             {% if current_program %}
                                 {% if program_status == 'live' %}
                                     <p class="current-song"><i class="fas fa-circle" style="color: red; animation: pulse 1s infinite;"></i> LIVE: {{ current_program.title }}</p>
-                                    <p style="font-size: 0.85rem; color: #a0a0a0;">Host: {{ current_program.host }}</p>
+                                    <!-- <p style="font-size: 0.85rem; color: #a0a0a0;">Host: {{ current_program.host }}</p> -->
                                 {% elif program_status == 'upcoming' %}
                                     <p class="current-song"><i class="fas fa-clock" style="color: #54adde;"></i> NEXT: {{ current_program.title }}</p>
                                     <p style="font-size: 0.85rem; color: #a0a0a0;">at {{ current_program.start_time }}</p>
@@ -45,6 +45,7 @@
                                 <p class="current-song">Tune in to Energy Radio</p>
                             {% endif %}
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -64,61 +65,34 @@
 <section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
     <div class="container">
         <div class="section-title">
-            <h2>Ad.</h2>
+            <h2>HOST WITH TOP5SAI.</h2>
         </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="ad-card">
-                    <div class="ad-placeholder">
-                        <video class="img-fluid ad-video" src="media/video/top1.mp4" muted autoplay loop playsinline
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-                        </video>
-                        <div class="ad-overlay">
-                            <i class="fas fa-ad"></i>
-                            <p>Premium Advertisement Space</p>
+        <div class="row advertisements-row">
+            {% for advertisement in advertisements %}
+            <div class="col-md-3 col-sm-6 advertisement-column">
+                    <div class="ad-card">
+                        <div class="ad-placeholder">
+                            {% if advertisement.link_url %}<a href="{{ advertisement.link_url }}" target="_blank" rel="noopener noreferrer">{% endif %}
+                            {% if advertisement.video %}
+                                <video class="img-fluid ad-video" src="{{ advertisement.video.url }}" muted autoplay loop playsinline preload="auto" aria-label="{{ advertisement.title }}"></video>
+                            {% elif advertisement.image %}
+                                <img class="img-fluid ad-image" src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}">
+                            {% elif advertisement.image_url %}
+                                <img class="img-fluid ad-image" src="{{ advertisement.image_url }}" alt="{{ advertisement.title }}">
+                            {% endif %}
+                            <div class="ad-overlay">
+                                <i class="fas fa-ad"></i>
+                                <p>{{ advertisement.title }}</p>
+                            </div>
+                            {% if advertisement.link_url %}</a>{% endif %}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="ad-card">
-                    <div class="ad-placeholder">
-                        <video class="img-fluid ad-video" src="media/video/top2.mp4" muted autoplay loop playsinline
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-                        </video>
-                        <div class="ad-overlay">
-                            <i class="fas fa-ad"></i>
-                            <p>Premium Advertisement Space</p>
-                        </div>
-                    </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No advertisements available.</p>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="ad-card">
-                    <div class="ad-placeholder">
-                        <video class="img-fluid ad-video" src="media/video/top1.mp4" muted autoplay loop playsinline
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-                        </video>
-                        <div class="ad-overlay">
-                            <i class="fas fa-ad"></i>
-                            <p>Premium Advertisement Space</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="ad-card">
-                    <div class="ad-placeholder">
-                        <video class="img-fluid ad-video" src="media/video/top2.mp4" muted autoplay loop playsinline
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-                        </video>
-                        <div class="ad-overlay">
-                            <i class="fas fa-ad"></i>
-                            <p>Premium Advertisement Space</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -149,9 +123,12 @@
                         </div> {% endcomment %}
 
                           {% for program in programs %}
-                        <div class="program-slide">
-                            <div class="program-card-slide">
-                                        {% if program.image %}
+                        <div class="program-slide" data-program-id="{{ program.id }}" data-program-title="{{ program.title }}">
+                            <div class="program-card-slide{% if program_status == 'live' and current_program and program.id == current_program.id %} is-live{% endif %}">
+                                {% if program_status == 'live' and current_program and program.id == current_program.id %}
+                                    <div class="live-badge">LIVE NOW</div>
+                                {% endif %}
+                                {% if program.image %}
                       <img src="{{ program.image.url }}" alt="{{ program.title }}" class="program-image">
                                 {% endif %}
                                 <h4>{{ program.title }}</h4>

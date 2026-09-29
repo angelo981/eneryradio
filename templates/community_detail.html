@@ -9,53 +9,21 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="community-wrapper">
-
-            <!-- community Title -->
-            <h3 class="community-title">{{ community.title }}</h3>
-                <!-- community Meta -->
-            <div class="community-met" >
-                <div class="meta-info">
-                    <div class="meta-item">
-                        <i class="fas fa-calendar"></i>
-                        {{ community.created_at|date:"F d, Y" }}
+        <main class="community-wrapper">
+            <h1 class="community-title">{{ community.title }}</h1>
+            <div class="community-feature">
+                <figure class="community-media">
+                    <div class="community-image">
+                        <img src="{{ community.image.url }}" alt="{{ community.title }}">
                     </div>
-                    <div class="meta-item">
-                        <i class="fas fa-clock"></i>
-                        {{ community.created_at|time:"H:i" }}
-                    </div>
-                    <!-- <div class="meta-item">
-                        <i class="fas fa-user"></i>
-                        By <span class="author-name">{{ article.author.first_name }} {{ article.author.last_name }}</span>
-                    </div> -->
-                </div>
-                <!-- <div class="social-share">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ community.title }}" target="_blank" class="social-btn" title="Share on Twitter">
-                        <i class="fab fa-x"></i>
-                    </a>
-                    <a href="https://wa.me/?text={{ community.title }}%20{{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div> -->
+                    <figcaption class="community-met">
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>{{ community.created_at|date:"F d, Y" }}</span>
+                        <span class="meta-item"><i class="fas fa-clock" aria-hidden="true"></i>{{ community.created_at|time:"H:i" }}</span>
+                    </figcaption>
+                </figure>
+                <div class="community-content">{{ community.content|safe }}</div>
             </div>
-
-
-            <!-- community Image -->
-            <div class="community-image">
-                <img src="{{ community.image.url }}" alt="{{ community.title }}">
-            </div>
-
-            <!-- community Content -->
-            <div class="community-content">
-                <p>{{ community.content|safe }}</p>
-            </div>
-
-
-        </div>
+        </main>
     </div>
-</div>
 {% endblock content %}
 

@@ -170,6 +170,8 @@
     color: var(--text-muted);
     font-size: 0.8rem; /* smaller text */
     line-height: 1.4;
+    text-align: justify;
+    text-justify: inter-word;
 
     display: -webkit-box;
     -webkit-line-clamp: 2; /* was 3 → now 2 lines */

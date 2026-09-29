@@ -83,6 +83,7 @@ def home(request):
     program = Program.objects.filter(day__day=date.today().isoweekday(), is_active=True).order_by('start_time')
     article = Article.objects.filter(status='published').order_by('-created_at')[:3]
     podcasts = PodcastShow.objects.filter(is_active=True).order_by('-created_at')[:4]
+    advertisements = Advertisement.objects.filter(is_active=True)
 
      # Convert video URLs to embed format
     # Get current program
@@ -108,6 +109,12 @@ def home(request):
             if first_prog:
                 current_program = first_prog
                 program_status = 'later'
+
+    programs_for_display = list(program)
+    if program_status == 'live' and current_program and len(programs_for_display) > 1:
+        live_index = programs_for_display.index(current_program)
+        start_index = (live_index - 1) % len(programs_for_display)
+        programs_for_display = programs_for_display[start_index:] + programs_for_display[:start_index]
     
     # Convert video URLs to embed format
 
@@ -117,9 +124,10 @@ def home(request):
         else:
             podcast.embed_video_url = None
     context = {
-        "programs": program,
+        "programs": programs_for_display,
         "articles": article,
         "podcasts": podcasts,
+        "advertisements": advertisements,
         "current_program": current_program,
         "program_status": program_status,
 
@@ -152,8 +160,8 @@ def team(request):
     }
     return render(request, template_name, context)
 def blogs(request):
-    template_name="blogs.html"
-    return render(request, template_name)
+    blogs = Blog.objects.order_by('-date', '-created_at')
+    return render(request, "blogs.html", {"blogs": blogs})
 
 def podcast(request):
     template_name="podcast.html"

@@ -98,7 +98,7 @@ body {
 .article-container {
     background: var(--bg-card);
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid var(--border-color);
     backdrop-filter: blur(15px);
     animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -214,14 +214,17 @@ body {
 /* ===== ARTICLE TITLE ===== */
 .article-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3.2rem;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.12;
     margin-bottom: 0;
     color: var(--text-primary);
     padding: 2.5rem 2.5rem 1.5rem 2.5rem;
     animation: fadeIn 0.8s ease-out 0.15s both;
     letter-spacing: -1px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 @keyframes fadeIn {
@@ -559,9 +562,33 @@ body {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .article-container {
+        min-width: 0;
+    }
+
+    .container-fluid {
+        padding: 8rem 1.5rem 1.5rem;
+    }
+
     .article-title {
-        font-size: 2.2rem;
+        display: block;
+        font-size: clamp(1.9rem, 7vw, 2.55rem);
+        line-height: 1.16;
         padding: 1.8rem 1.5rem 1rem 1.5rem;
+        letter-spacing: 0;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+        word-break: normal;
+        overflow-wrap: anywhere;
     }
 
     .article-image {
@@ -611,7 +638,20 @@ body {
 
 @media (max-width: 480px) {
     .article-title {
-        font-size: 1.8rem;
+        display: block;
+        font-size: clamp(1.6rem, 7vw, 2rem);
+        line-height: 1.18;
+        padding: 1.45rem 1rem 0.85rem 1rem;
+        letter-spacing: 0;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+        overflow-wrap: anywhere;
+        word-break: normal;
     }
 
     .article-image {
@@ -627,6 +667,6 @@ body {
     }
 
     .container-fluid {
-        padding: 1.5rem 1rem;
+        padding: 8rem 1rem 1.5rem;
     }
 }

@@ -5,99 +5,70 @@
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
 {% endblock extra_head %}
 {% block content %}
-
- <!-- Hero Section -->
-    <section class="hero-blog">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-newspaper"></i> BLOG & STORIES
-                </div>
-                <h1 class="hero-title">Latest Insights & Stories<br>From ENERGY RADIO</h1>
-                <p class="hero-subtitle">Discover inspiring articles, news, and community stories from Rwanda</p>
+<main class="journal-page">
+    <section class="journal-intro">
+        <div class="journal-hero-photo" aria-hidden="true">
+            <img src="{% static 'images/energy.jpeg' %}" alt="">
+        </div>
+        <div class="journal-container">
+            <div class="journal-hero-copy">
+                <p class="journal-kicker"><span></span> ENERGY RADIO JOURNAL</p>
+                <h1>Feel the Story.<span>Hear the Energy.</span></h1>
+            </div>
+            <div class="journal-intro-bottom">
+                <p>People, places, and moments shaping the sound of Rwanda, told by Energy Radio.</p>
+                <a class="journal-channel-link" href="https://www.youtube.com/@top5sai" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span>Explore our YouTube channel</span>
+                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Filter Section
-    <section class="filter-section">
-        <div class="container">
-            <div class="text-center">
-                <button class="filter-btn active" data-category="all">
-                    <span><i class="fas fa-th"></i> All Articles</span>
-                </button>
-                <button class="filter-btn" data-category="community">
-                    <span><i class="fas fa-users"></i> Community</span>
-                </button>
-                <button class="filter-btn" data-category="music">
-                    <span><i class="fas fa-music"></i> Music</span>
-                </button>
-                <button class="filter-btn" data-category="event">
-                    <span><i class="fas fa-calendar"></i> Events</span>
-                </button>
-                <button class="filter-btn" data-category="spotlight">
-                    <span><i class="fas fa-star"></i> Spotlight</span>
-                </button>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Blog Grid -->
-    <section class="blogs-grid">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">All Blog Articles</h2>
-                <p class="section-subtitle">Read our latest stories and insights</p>
-            </div>
-
-            <div class="row" id="blogsContainer">
-                <!-- Blog Card 1 -->
-          {% for blog in blogs %}
-        <div class="col-lg-4 col-md-6 blog-item">
-           <div class="blog-card" style="width: 350px; height: 400px;">
-                <div class="blog-image" style="width: 100%; height: 200px;">
-                    {% if blog.image %}
-                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
-                    {% else %}
-                        <img src="/static/images/default.jpg" alt="No image" class="blog-image">
-                    {% endif %}
+    <section class="journal-stories" aria-labelledby="journal-stories-title">
+        <div class="journal-container">
+            <div class="journal-section-heading">
+                <div>
+                    <p class="journal-section-kicker">From the newsroom</p>
+                    <h2 id="journal-stories-title">Latest stories</h2>
                 </div>
-                <div class="blogs-content">
-                    <h3 class="blogs-title">{{ blog.title }}</h3>
-                    <p class="blogs-description">{{ blog.description }}</p>
+                <span class="journal-story-count">{{ blogs|length }} stories</span>
+            </div>
 
-                    <div class="blogs-meta">
-                        <div class="blogs-impact">
-                            <i class="fas fa-calendar-alt"></i> {{ blog.created_at|date:"M d, Y" }}
+            <div class="journal-grid">
+                {% for blog in blogs %}
+                    <article class="journal-card">
+                        <div class="journal-card-image">
+                            {% if blog.image %}
+                                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+                            {% else %}
+                                <div class="journal-image-placeholder" aria-hidden="true"><i class="fas fa-radio"></i></div>
+                            {% endif %}
                         </div>
-                        {% if blog.content %}
-                             <a href="{% url 'blogs_detail' blog.pk %}" class="btn-read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        {% endif %}
-                    </div>
-                </div>
+                        <div class="journal-card-copy">
+                            <p class="journal-date"><i class="far fa-calendar" aria-hidden="true"></i><time datetime="{{ blog.date|date:'Y-m-d' }}">{{ blog.date|date:"M d, Y" }}</time></p>
+                            {% if blog.location %}<p class="journal-location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>{{ blog.location }}</p>{% endif %}
+                            <p class="journal-summary">{{ blog.Summary }}</p>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="journal-empty">New stories are on the way. Visit our YouTube channel for the latest from Energy Radio.</p>
+                {% endfor %}
             </div>
         </div>
-    {% empty %}
-        <div class="col-12 text-center py-5">
-            <p class="text-muted">No blogs found.</p>
-        </div>
-    {% endfor %}
-</div>
     </section>
 
-                <!-- Newsletter / CTA -->
-                <div class="newsletter-section">
-                    <h3 class="newsletter-title">Stay Updated</h3>
-                    <p class="newsletter-subtitle">Subscribe to our newsletter for the latest stories, events, and exclusive content.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-
+    <section class="journal-channel" aria-label="Energy Radio on YouTube">
+        <div class="journal-container journal-channel-inner">
+            <div class="journal-channel-mark"><i class="fab fa-youtube" aria-hidden="true"></i></div>
+            <div class="journal-channel-copy">
+                <p>Keep watching</p>
+                <h2>More stories on our channel.</h2>
+                <span>Interviews, events, and the voices moving Rwanda forward.</span>
             </div>
-        </section>
-
-
-
+            <a href="https://www.youtube.com/@top5sai" target="_blank" rel="noopener noreferrer">Visit YouTube <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+    </section>
+</main>
 {% endblock content %}

@@ -27,6 +27,13 @@
                 });
         }
 
+        function updateNowPlayingProgram() {
+            updateNowPlaying();
+            if (typeof refreshLiveProgramBadges === 'function') {
+                refreshLiveProgramBadges();
+            }
+        }
+
         // Update immediately on page load
         updateNowPlaying();
         
@@ -137,23 +144,113 @@ $('#muteBtn').click(function () {
             console.log('Setting up now playing updates');
             setTimeout(function() {
                 console.log('Calling updateNowPlayingProgram');
+                refreshLiveProgramBadges();
                 updateNowPlayingProgram();
                 // Update every 60 seconds (1 minute)
+                setInterval(refreshLiveProgramBadges, 60000);
                 setInterval(updateNowPlayingProgram, 60000);
             }, 500);
 
+            function refreshLiveProgramBadges() {
+                fetch('/api/current-program/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const programSlides = $('.program-slide');
+                        if (!programSlides.length) {
+                            return;
+                        }
+
+                        if (data.status === 'live' && data.title) {
+                            const liveTitle = String(data.title).trim();
+
+                            programSlides.each(function() {
+                                const slide = $(this);
+                                const title = String(slide.data('program-title') || '').trim();
+                                const card = slide.find('.program-card-slide');
+                                const cardHasBadge = card.find('> .live-badge').length;
+
+                                if (title === liveTitle) {
+                                    slide.addClass('is-live');
+                                    card.addClass('is-live');
+                                    if (!cardHasBadge) {
+                                        card.append('<span class="live-badge">LIVE NOW</span>');
+                                    } else {
+                                        card.find('> .live-badge').show();
+                                    }
+                                } else {
+                                    slide.removeClass('is-live');
+                                    card.removeClass('is-live');
+                                    const badge = card.find('> .live-badge');
+                                    if (badge.length) {
+                                        badge.hide();
+                                    }
+                                }
+                            });
+
+                            const liveSlide = programSlides.filter(function() {
+                                return String($(this).data('program-title') || '').trim() === liveTitle;
+                            }).first();
+
+                            if (liveSlide.length) {
+                                currentProgramIndex = liveSlide.index();
+                                updateSliderPosition(currentProgramIndex);
+                            }
+                        } else {
+                            programSlides.each(function() {
+                                const slide = $(this);
+                                const card = slide.find('.program-card-slide');
+                                const badge = card.find('> .live-badge');
+                                slide.removeClass('is-live');
+                                card.removeClass('is-live');
+                                if (badge.length) {
+                                    badge.hide();
+                                }
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error refreshing live program badges:', error);
+                    });
+            }
+
             // Programs Slider
-            let currentProgramIndex = 0;
             const programSlides = $('.program-slide');
+            let currentProgramIndex = programSlides.filter('.is-live').first().index();
+            if (currentProgramIndex < 0) {
+                currentProgramIndex = 0;
+            }
             const totalPrograms = programSlides.length;
             const slider = $('#programsSlider');
-            
-            function updateSliderPosition() {
-                const slideWidth = programSlides.eq(0).outerWidth(true);
-                const offset = -currentProgramIndex * slideWidth + (slider.parent().width() / 2) - (slideWidth / 2);
+
+            function updateSliderPosition(index = currentProgramIndex) {
+                if (!programSlides.length) {
+                    return;
+                }
+
+                const safeIndex = Math.max(0, Math.min(index, programSlides.length - 1));
+                const wrapperWidth = slider.parent().width();
+                const computedSliderStyle = getComputedStyle(slider[0]);
+                const gap = parseFloat(computedSliderStyle.gap || 0);
+
+                let leftOffset = 0;
+                for (let i = 0; i < safeIndex; i += 1) {
+                    const slide = programSlides.eq(i);
+                    if (slide.length) {
+                        leftOffset += slide.outerWidth(true);
+                        leftOffset += gap;
+                    }
+                }
+
+                const targetSlide = programSlides.eq(safeIndex);
+                const targetWidth = targetSlide.length ? targetSlide.outerWidth(true) : 0;
+                const targetWidthRaw = targetSlide.length ? targetSlide.outerWidth() : 0;
+                const centerPosition = leftOffset + (targetWidth / 2);
+                const offset = Math.round((wrapperWidth / 2) - centerPosition);
+
                 slider.css('transform', `translateX(${offset}px)`);
+
                 programSlides.removeClass('active');
-                programSlides.eq(currentProgramIndex).addClass('active');
+                programSlides.eq(safeIndex).addClass('active');
             }
             
             setTimeout(() => updateSliderPosition(), 100);

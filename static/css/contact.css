@@ -2,7 +2,7 @@
         .page-header {
             margin-top: 70px;
             padding: 140px 0 90px;
-            background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(84, 173, 222, 0.4)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=1920&h=700&fit=crop');
+            background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(84, 173, 222, 0.4)), url('../images/hero.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;

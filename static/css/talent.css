@@ -2,9 +2,9 @@
 .page-header {
     margin-top: 70px;
     padding: 80px 0 60px;
-    background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(139, 92, 246, 0.3)), url('https://imgs.search.brave.com/3YXtviVOuyOXFAN0oujofmd4s9S2ZoKSsiCznbeJJN8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/YWZkLmZyL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL2hl/YWRlcl9jb250ZW50/L3B1YmxpYy8yMDI0/LTEyLTA0LTMxLTUx/L2lzb25nYS12b2xs/ZXktZmVtaW5pbi5q/cGcud2VicD9pdG9r/PTl2Y2hFdTEy');
+    background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(139, 92, 246, 0.3)), url('../img/energy.jpeg');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-attachment: fixed;
     text-align: center;
     position: relative;
