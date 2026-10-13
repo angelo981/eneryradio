@@ -50,6 +50,10 @@
                     </div>
                 </div>
 
+                {% if article.excerpt %}
+                    <p class="article-detail-subtitle">{{ article.excerpt }}</p>
+                {% endif %}
+
                 <!-- Article Content -->
                 <div class="article-content">
                     <p>{{ article.content|safe }}</p>
