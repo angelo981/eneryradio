@@ -116,6 +116,19 @@ class AdvertisementAdmin(admin.ModelAdmin):
 
 admin.site.register(Advertisement, AdvertisementAdmin)
 
+@admin.register(ArticleDetailAdvertisement)
+class ArticleDetailAdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('slot', 'title', 'is_active')
+    list_editable = ('is_active',)
+    list_filter = ('is_active',)
+    search_fields = ('title',)
+    ordering = ('slot',)
+    fieldsets = (
+        ('Card placement', {'fields': ('slot', 'title')}),
+        ('Advertisement media', {'fields': ('image', 'video')}),
+        ('Link and status', {'fields': ('link_url', 'is_active')}),
+    )
+
 @admin.register(Community)
 class CommunityAdmin(SummernoteModelAdmin):
     list_display = ('title', 'is_active', 'order', 'created_at')

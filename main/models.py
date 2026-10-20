@@ -83,7 +83,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles/', blank=False, null=False, verbose_name="Cover Image")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name="Status")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=False, related_name='articles', verbose_name="Author")
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="Publication date and time")
     updated_at = models.DateTimeField(auto_now=True)
    
     class Meta:
@@ -288,6 +288,29 @@ class Advertisement(models.Model):
    
     def __str__(self):
         return self.title
+
+class ArticleDetailAdvertisement(models.Model):
+    SLOT_CHOICES = (
+        (1, 'First card'),
+        (2, 'Second card'),
+    )
+
+    slot = models.PositiveSmallIntegerField(choices=SLOT_CHOICES, unique=True, verbose_name="Card")
+    title = models.CharField(max_length=200, verbose_name="Ad Title")
+    image = models.ImageField(upload_to='article_ads/images/', blank=True, null=True, verbose_name="Ad Image")
+    video = models.FileField(upload_to='article_ads/videos/', blank=True, null=True, verbose_name="Ad Video")
+    link_url = models.URLField(blank=True, null=True, verbose_name="Link URL")
+    is_active = models.BooleanField(default=True, verbose_name="Active")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Article Detail Advertisement"
+        verbose_name_plural = "Article Detail Advertisements"
+        ordering = ['slot']
+
+    def __str__(self):
+        return f"{self.get_slot_display()}: {self.title}"
 
 class Community(models.Model):
     STATUS_CHOICES = [

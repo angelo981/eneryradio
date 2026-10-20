@@ -503,6 +503,7 @@ body {
 
 .trending-link {
     display: flex;
+    min-width: 0;
     padding: 12px 15px;
     text-decoration: none;
     color: inherit;
@@ -532,6 +533,7 @@ body {
 /* Card Content */
 .trending-card-content {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -543,10 +545,7 @@ body {
     line-height: 1.4;
     margin: 0 0 8px 0;
     color: white;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow-wrap: anywhere;
 }
 
 .trending-meta {
@@ -565,6 +564,84 @@ body {
     font-size: 14px;
 }
 
+/* Sidebar Advertisements */
+.sidebar-ad-section {
+    margin-top: 0;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-card);
+}
+
+.sidebar-ad-heading {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.sidebar-ad-heading i {
+    margin-right: 0.4rem;
+    color: var(--accent-gold);
+}
+
+.sidebar-ad-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+}
+
+.sidebar-ad-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    background: rgba(10, 14, 39, 0.55);
+}
+
+.sidebar-ad-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.sidebar-ad-media {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0a0e27;
+}
+
+.sidebar-ad-media img,
+.sidebar-ad-media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sidebar-ad-title {
+    margin: 0;
+    padding: 0.65rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.sidebar-ad-empty {
+    margin: 0;
+    padding: 1rem;
+    border: 1px dashed var(--border-light);
+    border-radius: 6px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .trending-card-image {
@@ -575,6 +652,7 @@ body {
     .trending-title {
         font-size: 13px;
     }
+
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

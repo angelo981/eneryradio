@@ -1,4 +1,5 @@
 from xml.etree.ElementTree import Comment
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import *
@@ -220,7 +221,10 @@ def article_detail(request, pk):
 
     trending_articles = Article.objects.filter(
         status='published'
-    ).order_by('-created_at')[:5]
+    ).order_by('-created_at')[:12]
+    advertisements = ArticleDetailAdvertisement.objects.filter(is_active=True).filter(
+        Q(image__gt='') | Q(video__gt='')
+    ).order_by('slot')
 
     context = {
         "article": article,
@@ -228,6 +232,7 @@ def article_detail(request, pk):
         "comments": comment,
         "related_articles": related_articles,
         "trending_articles": trending_articles,
+        "advertisements": advertisements,
     }
     return render(request, template_name, context)
 

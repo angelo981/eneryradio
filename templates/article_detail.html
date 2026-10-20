@@ -50,10 +50,10 @@
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={{ article.title|urlencode }}" target="_blank" class="social-btn" title="Share on Twitter">
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on Twitter">
                             <i class="fab fa-x"></i>
                         </a>
-                        <a href="https://wa.me/?text={{ article.title|urlencode }}%20{{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on WhatsApp">
+                        <a href="https://wa.me/?text={{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                        
@@ -146,6 +146,33 @@
         </div>
         {% endfor %}
     </div>
+    <section class="sidebar-ad-section" aria-labelledby="sidebar-ad-title">
+        <h2 class="sidebar-ad-heading" id="sidebar-ad-title">
+            <i class="fas fa-bullhorn" aria-hidden="true"></i> Advertisements
+        </h2>
+        {% if advertisements %}
+            <div class="sidebar-ad-grid">
+                {% for ad in advertisements %}
+                    <article class="sidebar-ad-card">
+                        {% if ad.link_url %}<a class="sidebar-ad-link" href="{{ ad.link_url }}" target="_blank" rel="noopener noreferrer">{% endif %}
+                        <div class="sidebar-ad-media">
+                                {% if ad.video %}
+                                    <video autoplay muted loop playsinline preload="metadata" aria-label="{{ ad.title }}">
+                                    <source src="{{ ad.video.url }}">
+                                </video>
+                            {% elif ad.image %}
+                                <img src="{{ ad.image.url }}" alt="{{ ad.title }}">
+                            {% endif %}
+                        </div>
+                        <h3 class="sidebar-ad-title">{{ ad.title }}</h3>
+                        {% if ad.link_url %}</a>{% endif %}
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="sidebar-ad-empty">There are currently no advertisements available.</p>
+        {% endif %}
+    </section>
 </aside>
         </div>
     </div>

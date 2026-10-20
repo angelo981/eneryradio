@@ -246,17 +246,6 @@
     box-shadow: 0 5px 15px rgba(84, 173, 222, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .news-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 10px;
-    }
-
-    .news-card img {
-        height: 100px;
-    }
-}
         /* Pagination */
         .pagination-wrapper {
             display: flex;
