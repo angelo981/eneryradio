@@ -3,6 +3,16 @@
 {% load static %}
 
 {% block extra_head %}
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ article.title }}">
+<meta property="og:description" content="{{ article.excerpt }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{{ article_image_url }}">
+<meta property="og:image:alt" content="{{ article.title }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ article.title }}">
+<meta name="twitter:description" content="{{ article.excerpt }}">
+<meta name="twitter:image" content="{{ article_image_url }}">
 <link rel="stylesheet" href="{% static 'css/article.css' %}">
 {% endblock extra_head %}
 
@@ -37,13 +47,13 @@
                         </div>
                     </div>
                     <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on Facebook">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank" class="social-btn" title="Share on Twitter">
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={{ article.title|urlencode }}" target="_blank" class="social-btn" title="Share on Twitter">
                             <i class="fab fa-x"></i>
                         </a>
-                        <a href="https://wa.me/?text={{ article.title }}%20{{ request.build_absolute_uri }}" target="_blank" class="social-btn" title="Share on WhatsApp">
+                        <a href="https://wa.me/?text={{ article.title|urlencode }}%20{{ request.build_absolute_uri|urlencode }}" target="_blank" class="social-btn" title="Share on WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                        

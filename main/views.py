@@ -224,6 +224,7 @@ def article_detail(request, pk):
 
     context = {
         "article": article,
+        "article_image_url": request.build_absolute_uri(article.image.url),
         "comments": comment,
         "related_articles": related_articles,
         "trending_articles": trending_articles,

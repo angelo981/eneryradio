@@ -225,7 +225,7 @@ body {
     max-width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
-    text-align: justify;
+    text-align: left;
 }
 
 .article-detail-subtitle {
@@ -236,7 +236,7 @@ body {
     font-weight: 600;
     line-height: 1.4;
     overflow-wrap: anywhere;
-    text-align: justify;
+    text-align: left;
 }
 
 @keyframes fadeIn {
@@ -256,6 +256,11 @@ body {
     line-height: 1.85;
     font-size: 1.1rem;
     color: var(--text-secondary);
+}
+
+.article-content,
+.article-content * {
+    color: var(--text-secondary) !important;
 }
 
 .article-content p {
