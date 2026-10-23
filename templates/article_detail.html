@@ -26,8 +26,8 @@
                 <h1 class="article-title">{{ article.title }}</h1>
 
                 <!-- Article Image -->
-                <div class="article-image">
-                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                <div class="article-image" style="background-image: url('{{ article.image.url }}');">
+                    <img class="article-image-foreground" src="{{ article.image.url }}" alt="{{ article.title }}">
                 </div>
 
                 <!-- Article Meta -->
@@ -176,4 +176,44 @@
 </aside>
         </div>
     </div>
+<script>
+    (() => {
+        const frame = document.querySelector(".article-image");
+        const image = frame && frame.querySelector(".article-image-foreground");
+        if (!frame || !image) return;
+
+        const updateBackground = () => {
+            if (!image.naturalWidth || !image.naturalHeight) return;
+
+            const { width, height } = frame.getBoundingClientRect();
+            if (!width || !height) return;
+
+            const imageRatio = image.naturalWidth / image.naturalHeight;
+            const frameRatio = width / height;
+            const horizontalGap = imageRatio < frameRatio
+                ? (width - height * imageRatio) / 2
+                : 0;
+            const verticalGap = imageRatio > frameRatio
+                ? (height - width / imageRatio) / 2
+                : 0;
+
+            frame.classList.toggle(
+                "has-image-gaps",
+                Math.max(horizontalGap, verticalGap) > 2
+            );
+        };
+
+        if (image.complete) {
+            updateBackground();
+        } else {
+            image.addEventListener("load", updateBackground, { once: true });
+        }
+
+        if ("ResizeObserver" in window) {
+            new ResizeObserver(updateBackground).observe(frame);
+        } else {
+            window.addEventListener("resize", updateBackground);
+        }
+    })();
+</script>
 {% endblock content %}

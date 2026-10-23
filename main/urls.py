@@ -11,6 +11,7 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('team', views.team, name="team"),
     path('blogs', views.blogs, name="blogs"),
+    path('blogs/<int:pk>/', views.blog_detail, name='blog_detail'),
     path('article/<int:pk>/', views.article_detail, name='article_detail'),
     path('podcast', views.podcast, name="podcast"),
     path('community', views.community, name="community"),

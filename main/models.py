@@ -293,6 +293,7 @@ class ArticleDetailAdvertisement(models.Model):
     SLOT_CHOICES = (
         (1, 'First card'),
         (2, 'Second card'),
+        (3, 'Third card'),
     )
 
     slot = models.PositiveSmallIntegerField(choices=SLOT_CHOICES, unique=True, verbose_name="Card")

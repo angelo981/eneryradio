@@ -1,27 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
-
-
-{% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/blogs_detail.css' %}">
-{% endblock extra_head %}
-
-
 {% block content %}
 <!-- Main Content -->
 <div class="container-fluid">
     <div class="main-grid">
-        <!-- Main blogs -->
         <div class="blogs-container">
+            {% if blogs.image %}
+                <div class="article-image">
+                    <img src="{{ blogs.image.url }}" alt="{{ blogs.title }}">
+                </div>
+            {% endif %}
 
-
-            <!-- blogs Image -->
-            <div class="article-image">
-                <img src="{{ blogs.image.url }}" alt="{{ blogs.title }}">
-            </div>
-
-
-            <!-- blogs Meta -->
             <div class="article-meta">
                 <div class="meta-info">
                     <div class="meta-item">
@@ -32,22 +21,16 @@
                         <i class="fas fa-clock"></i>
                         {{ blogs.created_at|time:"H:i" }}
                     </div>
-                </div>  
+                </div>
             </div>
 
-
-            <!-- community Title -->
             <h1 class="article-title">{{ blogs.title }}</h1>
 
-
-            <!-- community Content -->
             <div class="blogs-content">
-                <p>{{ blogs.content|safe }}</p>
+                <p>{{ blogs.Summary|linebreaksbr }}</p>
+                {{ blogs.content|safe }}
             </div>
-
-
         </div>
     </div>
 </div>
 {% endblock content %}
-

@@ -3,6 +3,7 @@
 {% load static %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+<script src="{% static 'js/blogs.js' %}" defer></script>
 {% endblock extra_head %}
 {% block content %}
 <main class="journal-page">
@@ -38,7 +39,7 @@
 
             <div class="journal-grid">
                 {% for blog in blogs %}
-                    <article class="journal-card">
+                    <a class="journal-card" href="{% url 'blog_detail' blog.pk %}" data-blog-template="journal-story-{{ blog.pk }}" aria-haspopup="dialog" aria-label="Read {{ blog.title }}">
                         <div class="journal-card-image">
                             {% if blog.image %}
                                 <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
@@ -51,13 +52,34 @@
                             {% if blog.location %}<p class="journal-location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>{{ blog.location }}</p>{% endif %}
                             <p class="journal-summary">{{ blog.Summary }}</p>
                         </div>
-                    </article>
+                    </a>
+                    <template id="journal-story-{{ blog.pk }}">
+                        <article class="journal-dialog-story">
+                            {% if blog.image %}
+                                <figure class="journal-dialog-image">
+                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                                </figure>
+                            {% endif %}
+                            <div class="journal-dialog-copy">
+                                <p class="journal-date"><i class="far fa-calendar" aria-hidden="true"></i><time datetime="{{ blog.date|date:'Y-m-d' }}">{{ blog.date|date:"F d, Y" }}</time></p>
+                                {% if blog.location %}<p class="journal-location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>{{ blog.location }}</p>{% endif %}
+                                <div class="journal-dialog-summary">{{ blog.Summary }}</div>
+                            </div>
+                        </article>
+                    </template>
                 {% empty %}
                     <p class="journal-empty">New stories are on the way. Visit our YouTube channel for the latest from Energy Radio.</p>
                 {% endfor %}
             </div>
         </div>
     </section>
+
+    <dialog class="journal-dialog" aria-label="Blog details">
+        <button class="journal-dialog-close" type="button" aria-label="Close blog details">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="journal-dialog-body"></div>
+    </dialog>
 
     <section class="journal-channel" aria-label="Energy Radio on YouTube">
         <div class="journal-container journal-channel-inner">

@@ -119,7 +119,7 @@ body {
 /* ===== ARTICLE IMAGE ===== */
 .article-image {
     width: 100%;
-    height: 700px;
+    height: clamp(320px, 38vw, 620px);
     background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-red) 100%);
     position: relative;
     overflow: hidden;
@@ -129,14 +129,28 @@ body {
 }
 
 .article-image img {
+    display: block;
     width: 100%;
+    max-width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    object-fit: contain;
+    object-position: center;
 }
 
-.article-image:hover img {
+.article-image.has-image-gaps::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-position: center;
+    background-size: cover;
+    filter: blur(18px) brightness(0.55);
     transform: scale(1.08);
+}
+
+.article-image .article-image-foreground {
+    position: relative;
+    z-index: 1;
 }
 
 /* ===== ARTICLE META ===== */
@@ -253,9 +267,21 @@ body {
 /* ===== ARTICLE CONTENT ===== */
 .article-content {
     padding: 2.5rem;
+    min-width: 0;
     line-height: 1.85;
     font-size: 1.1rem;
     color: var(--text-secondary);
+}
+
+.article-content img {
+    display: block;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: min(70vh, 600px) !important;
+    margin: 1.25rem auto;
+    object-fit: contain;
+    object-position: center;
 }
 
 .article-content,
@@ -491,6 +517,7 @@ body {
 .trending-item-card {
     border-bottom: 1px solid #252d48;;
     transition: background-color 0.3s ease;
+    height: 90px;
 }
 
 .trending-item-card:last-child {
@@ -503,7 +530,9 @@ body {
 
 .trending-link {
     display: flex;
+    align-items: center;
     min-width: 0;
+    height: 100%;
     padding: 12px 15px;
     text-decoration: none;
     color: inherit;
@@ -513,16 +542,18 @@ body {
 /* Card Image */
 .trending-card-image {
     flex-shrink: 0;
-    width: 80px;
-    height: 80px;
+    width: 66px;
+    height: 66px;
     border-radius: 6px;
     overflow: hidden;
 }
 
 .trending-card-image img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
 }
 
@@ -543,9 +574,13 @@ body {
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
-    margin: 0 0 8px 0;
+    margin: 0;
     color: white;
     overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .trending-meta {
@@ -567,14 +602,14 @@ body {
 /* Sidebar Advertisements */
 .sidebar-ad-section {
     margin-top: 0;
-    padding: 0.75rem;
+    padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background: var(--bg-card);
 }
 
 .sidebar-ad-heading {
-    margin: 0 0 1rem;
+    margin: 0 0 0.75rem;
     color: var(--text-primary);
     font-size: 1.1rem;
     font-weight: 700;
@@ -595,8 +630,9 @@ body {
     min-width: 0;
     overflow: hidden;
     border: 1px solid var(--border-light);
-    border-radius: 6px;
+    border-radius: 10px;
     background: rgba(10, 14, 39, 0.55);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
 }
 
 .sidebar-ad-link {
@@ -609,24 +645,24 @@ body {
 .sidebar-ad-media {
     display: flex;
     width: 100%;
-    aspect-ratio: 4 / 3;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #0a0e27;
 }
 
 .sidebar-ad-media img,
 .sidebar-ad-media video {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 320px;
     object-fit: contain;
+    object-position: center;
 }
 
 .sidebar-ad-title {
     margin: 0;
-    padding: 0.65rem;
+    padding: 0.65rem 0.85rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
     line-height: 1.35;
@@ -644,9 +680,32 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .sidebar-ad-section {
+        padding: 0.75rem;
+    }
+
+    .sidebar-ad-grid {
+        gap: 0.65rem;
+    }
+
+    .sidebar-ad-media img,
+    .sidebar-ad-media video {
+        max-height: min(55vh, 320px);
+    }
+
+    .sidebar-ad-title {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .trending-item-card {
+        height: auto;
+        min-height: 84px;
+    }
+
     .trending-card-image {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
     }
     
     .trending-title {
@@ -692,7 +751,7 @@ body {
     }
 
     .article-image {
-        height: 320px;
+        height: clamp(300px, 70vw, 480px);
     }
 
     .article-meta {
@@ -709,16 +768,6 @@ body {
     .article-content {
         padding: 1.5rem;
         font-size: 1.05rem;
-    }
-
-    .article-content img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        margin-right: auto;
-        margin-left: auto;
-        object-fit: contain;
     }
 
     .comments-section,
@@ -770,7 +819,7 @@ body {
     }
 
     .article-image {
-        height: 250px;
+        height: clamp(280px, 80vw, 400px);
     }
 
     .article-meta {

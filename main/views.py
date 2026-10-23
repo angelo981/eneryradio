@@ -164,6 +164,10 @@ def blogs(request):
     blogs = Blog.objects.order_by('-date', '-created_at')
     return render(request, "blogs.html", {"blogs": blogs})
 
+def blog_detail(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    return render(request, "blogs_detail.html", {"blogs": blog})
+
 def podcast(request):
     template_name="podcast.html"
     selected_category = request.GET.get('category', None)
@@ -224,7 +228,7 @@ def article_detail(request, pk):
     ).order_by('-created_at')[:12]
     advertisements = ArticleDetailAdvertisement.objects.filter(is_active=True).filter(
         Q(image__gt='') | Q(video__gt='')
-    ).order_by('slot')
+    ).order_by('slot')[:3]
 
     context = {
         "article": article,
